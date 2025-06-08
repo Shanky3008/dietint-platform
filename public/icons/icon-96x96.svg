@@ -1,0 +1,28 @@
+
+    <svg width="96" height="96" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        
+        <!-- Background with rounded corners -->
+        <rect x="0" y="0" width="96" height="96" rx="14.399999999999999" ry="14.399999999999999" fill="url(#grad)"/>
+        
+        <!-- Main leaf/nutrition symbol -->
+        <ellipse cx="48" cy="43.2" rx="17.28" ry="23.04" fill="white"/>
+        
+        <!-- Leaf vein -->
+        <line x1="48" y1="24.96" x2="48" y2="65.28" 
+              stroke="white" stroke-width="1.44"/>
+        
+        <!-- Nutrition symbols (small circles) -->
+        <circle cx="30.72" cy="36.480000000000004" r="2.4000000000000004" fill="white"/>
+        <circle cx="62.4" cy="42.24" r="2.4000000000000004" fill="white"/>
+        <circle cx="39.36" cy="62.4" r="2.4000000000000004" fill="white"/>
+        <circle cx="53.76" cy="65.28" r="2.4000000000000004" fill="white"/>
+        
+        
+    </svg>
+    

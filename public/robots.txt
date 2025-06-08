@@ -1,0 +1,59 @@
+# NutriWise Robots.txt
+# https://nutriwise.app/robots.txt
+
+User-agent: *
+Allow: /
+
+# Allow all crawlers access to CSS and JS files
+Allow: /_next/static/
+Allow: /images/
+Allow: /icons/
+Allow: /screenshots/
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /api/
+
+# Disallow user-specific pages
+Disallow: /dashboard/
+Disallow: /profile/
+
+# Disallow authentication pages (no need to index)
+Disallow: /auth/
+
+# Allow specific API endpoints for SEO
+Allow: /api/health
+
+# Sitemaps
+Sitemap: https://nutriwise.app/sitemap.xml
+
+# Crawl-delay for politeness (optional)
+# Crawl-delay: 1
+
+# Google-specific directives
+User-agent: Googlebot
+Allow: /
+
+# Bing-specific directives  
+User-agent: Bingbot
+Allow: /
+
+# Prevent indexing of sensitive or duplicate content
+Disallow: /*?*
+Disallow: /*/*?*
+
+# Block AI training crawlers (optional)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
