@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
     optimizeCss: true,
-    gzipSize: true,
   },
   
   // Enhanced caching and performance headers
@@ -111,54 +109,24 @@ const nextConfig = {
     ],
   },
   
-  // Bundle analyzer and optimization
+  // Simplified webpack configuration
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Optimize bundle size
-    if (!dev && !isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@mui/styled-engine': '@mui/styled-engine-sc',
-      };
-    }
-    
-    // Enable tree shaking for lodash
-    config.module.rules.push({
-      test: /\.js$/,
-      include: /node_modules\/lodash/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          plugins: ['lodash'],
-        },
-      },
-    });
-
     return config;
   },
   
   // Compress responses
   compress: true,
   
-  // Enable SWC minification for better performance
-  swcMinify: true,
-  
   // Enable React strict mode
   reactStrictMode: true,
   
   // Optimize for production
   poweredByHeader: false,
-  generateEtags: true,
-  
-  // Optimize CSS
-  optimizeFonts: true,
   
   // Enable concurrent features
   modularizeImports: {
     '@mui/icons-material': {
       transform: '@mui/icons-material/{{member}}',
-    },
-    'lodash': {
-      transform: 'lodash/{{member}}',
     },
   },
   
