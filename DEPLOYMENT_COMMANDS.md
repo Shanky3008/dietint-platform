@@ -1,6 +1,6 @@
-# 🚀 Exact Deployment Commands for Vercel
+# 🚀 DietInt Deployment Commands
 
-Quick reference for deploying NutriConnect to Vercel production.
+Quick reference for deploying DietInt to Vercel production.
 
 ## 🔧 Prerequisites Setup
 
@@ -47,17 +47,18 @@ git init
 git add .
 
 # Create initial commit
-git commit -m "Initial commit: NutriConnect production-ready platform
+git commit -m "Initial commit: DietInt - Diet Intelligence & Interaction Platform
 
 Features:
-- Complete dietitian platform with client management
-- Appointment booking and video consultations  
-- Diet plan creation and tracking
-- Payment processing with Stripe
-- Email and WhatsApp notifications
+- Complete nutrition intelligence platform
+- Interactive dietitian consultations
+- AI-powered diet recommendations
+- Appointment booking and video calls
+- Progress tracking and analytics
+- Payment processing integration
 - PWA support with offline functionality
-- Admin dashboard and analytics
 - Mobile-responsive design
+- Admin dashboard and content management
 
 🤖 Generated with Claude Code
 
@@ -68,11 +69,11 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 ```bash
 # Create repository on GitHub (replace with your username)
 # Visit: https://github.com/new
-# Repository name: nutriconnect-platform
-# Description: Professional dietitian platform with client management
+# Repository name: dietint-platform
+# Description: DietInt - Diet Intelligence & Interaction Platform
 
 # Add remote origin
-git remote add origin https://github.com/YOUR_USERNAME/nutriconnect-platform.git
+git remote add origin https://github.com/YOUR_USERNAME/dietint-platform.git
 
 # Push to GitHub
 git push -u origin main
@@ -83,7 +84,7 @@ git push -u origin main
 ### 1. Create Vercel Postgres Database
 ```bash
 # Create PostgreSQL database
-vercel postgres create nutriconnect-production
+vercel postgres create dietint-production
 
 # Note: Save the connection details shown
 ```

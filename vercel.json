@@ -61,7 +61,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://nutriconnect.vercel.app"
+          "value": "https://dietint.com"
         },
         {
           "key": "Access-Control-Allow-Methods",

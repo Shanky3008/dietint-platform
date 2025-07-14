@@ -1,0 +1,58 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2E8B57;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#32CD32;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Animation for morphing between intelligence and interaction -->
+    <style>
+      .morph-path {
+        animation: morph 4s ease-in-out infinite alternate;
+      }
+      
+      @keyframes morph {
+        0% {
+          /* Brain/Intelligence state */
+          d: path('M20,25 Q25,15 35,20 Q45,10 55,25 Q50,35 40,30 Q30,40 20,25 Z');
+        }
+        100% {
+          /* Interaction/Speech bubble state */
+          d: path('M20,20 Q20,10 30,10 L50,10 Q60,10 60,20 L60,30 Q60,40 50,40 L35,40 L25,45 L30,40 L30,40 Q20,40 20,30 Z');
+        }
+      }
+      
+      .neural-lines {
+        opacity: 1;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </defs>
+  
+  <!-- Main morphing shape -->
+  <path class="morph-path" fill="url(#brandGradient)" opacity="0.9"/>
+  
+  <!-- Neural network lines (representing intelligence) -->
+  <g class="neural-lines" stroke="#2E8B57" stroke-width="1.5" fill="none" opacity="0.6">
+    <line x1="25" y1="22" x2="35" y2="28" />
+    <line x1="35" y1="22" x2="45" y2="28" />
+    <line x1="45" y1="22" x2="55" y2="28" />
+    <circle cx="25" cy="22" r="2" fill="#2E8B57" />
+    <circle cx="35" cy="22" r="2" fill="#2E8B57" />
+    <circle cx="45" cy="22" r="2" fill="#2E8B57" />
+    <circle cx="55" cy="22" r="2" fill="#2E8B57" />
+  </g>
+  
+  <!-- Brand Text -->
+  <text x="75" y="25" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2E8B57">
+    diet
+  </text>
+  <text x="75" y="45" font-family="Arial, sans-serif" font-size="16" font-weight="300" fill="#666">
+    <tspan fill="#32CD32">int</tspan>elligence • <tspan fill="#32CD32">int</tspan>eraction
+  </text>
+</svg>

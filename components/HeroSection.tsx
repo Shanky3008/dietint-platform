@@ -67,9 +67,9 @@ export default function HeroSection() {
                 lineHeight: 1.2
               }}
             >
-              {content.hero?.title?.value || 'Transform Your Health with Expert Nutrition Guidance'}{' '}
+              {content.hero?.title?.value || 'Transform Your Health with Intelligent Nutrition'}{' '}
               <Typography component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
-                {content.branding?.app_name?.value || 'NutriConnect'}
+                {content.branding?.app_name?.value || 'DietInt'}
               </Typography>
             </Typography>
             
@@ -81,7 +81,7 @@ export default function HeroSection() {
                 fontSize: { xs: '1.1rem', md: '1.25rem' }
               }}
             >
-              {content.hero?.subtitle?.value || 'Personalized diet plans and expert consultations'}
+              {content.hero?.subtitle?.value || 'Intelligent nutrition through seamless interaction'}
             </Typography>
             
             <Typography 
@@ -92,7 +92,7 @@ export default function HeroSection() {
                 fontSize: { xs: '1rem', md: '1.1rem' }
               }}
             >
-              {content.hero?.description?.value || 'Connect with certified dietitians, track your nutrition progress, and achieve your health goals with personalized diet plans.'}
+              {content.hero?.description?.value || 'Experience intelligent nutrition guidance through interactive consultations with certified dietitians. Our smart platform adapts to your needs, providing personalized diet plans and real-time support for your health journey.'}
             </Typography>
             
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 5 }}>
@@ -127,10 +127,10 @@ export default function HeroSection() {
             
             <Grid container spacing={3} sx={{ mb: 4 }}>
               {[
-                { icon: <Security />, title: 'Evidence-Based', desc: 'Science-backed nutrition advice' },
-                { icon: <NaturePeople />, title: 'Personalized Plans', desc: 'Tailored to your unique needs' },
-                { icon: <Favorite />, title: 'Holistic Approach', desc: 'Mind and body wellness' },
-                { icon: <FitnessCenter />, title: 'Progress Tracking', desc: 'Monitor your improvement' }
+                { icon: <Security />, title: 'AI-Powered Intelligence', desc: 'Smart nutrition recommendations' },
+                { icon: <NaturePeople />, title: 'Interactive Consultations', desc: 'Real-time dietitian support' },
+                { icon: <Favorite />, title: 'Adaptive Learning', desc: 'Plans that evolve with you' },
+                { icon: <FitnessCenter />, title: 'Smart Tracking', desc: 'Intelligent progress monitoring' }
               ].map((feature, index) => (
                 <Grid item xs={6} key={index}>
                   <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>

@@ -1,23 +1,23 @@
-// Central branding configuration for NutriWise
+// Central branding configuration for DietInt
 export const BRAND_CONFIG = {
   // App Identity
-  name: 'NutriWise',
-  tagline: 'Intelligent Nutrition, Personalized Results',
-  description: 'AI-powered nutrition guidance and personalized diet plans for optimal health',
+  name: 'DietInt',
+  tagline: 'Diet Intelligence • Diet Interaction',
+  description: 'Intelligent nutrition guidance through seamless interaction with expert dietitians',
   
   // Visual Identity
   logo: {
-    emoji: '🧠',
-    text: 'NutriWise',
-    full: '🧠 NutriWise'
+    emoji: '🧠💬',
+    text: 'DietInt',
+    full: '🧠💬 DietInt'
   },
   
-  // Color Scheme (keeping the existing green theme but optimized)
+  // Color Scheme (DietInt brand colors)
   colors: {
-    primary: '#4CAF50',      // Healthy green
-    secondary: '#66BB6A',    // Lighter green
-    accent: '#FFC107',       // Warm accent (amber)
-    dark: '#2E7D32',         // Dark green
+    primary: '#2E8B57',      // Sea green (intelligence)
+    secondary: '#32CD32',    // Lime green (interaction)
+    accent: '#FFD700',       // Gold accent
+    dark: '#1B5E20',         // Dark green
     light: '#E8F5E8',        // Very light green
     text: {
       primary: '#2C3E50',    // Dark blue-gray
@@ -35,54 +35,54 @@ export const BRAND_CONFIG = {
   
   // Contact Information
   contact: {
-    email: 'hello@nutriwise.app',
-    phone: '+1 (555) 123-WISE',
+    email: 'hello@dietint.com',
+    phone: '+1 (555) 123-DIET',
     address: '123 Wellness Street, Health City, HC 12345',
     hours: 'Mon-Fri: 9AM-6PM, Sat: 10AM-4PM'
   },
   
   // Social Media
   social: {
-    website: 'https://nutriwise.app',
-    twitter: '@NutriWiseApp',
-    facebook: 'NutriWiseApp',
-    instagram: '@nutriwise.app',
-    linkedin: 'company/nutriwise'
+    website: 'https://dietint.com',
+    twitter: '@DietIntApp',
+    facebook: 'DietIntApp',
+    instagram: '@dietint.com',
+    linkedin: 'company/dietint'
   },
   
   // SEO Configuration
   seo: {
-    title: 'NutriWise - Intelligent Nutrition & Personalized Diet Plans',
-    description: 'Transform your health with AI-powered nutrition guidance. Get personalized diet plans, expert consultations, and smart meal recommendations with NutriWise.',
+    title: 'DietInt - Diet Intelligence & Interaction Platform',
+    description: 'Experience intelligent nutrition guidance through seamless interaction with expert dietitians. Get personalized diet plans, smart recommendations, and real-time support with DietInt.',
     keywords: [
-      'nutrition app',
-      'diet planning',
-      'personalized nutrition',
-      'AI nutrition',
-      'meal planning',
-      'weight management',
-      'healthy eating',
+      'diet intelligence',
+      'nutrition interaction',
+      'smart nutrition',
+      'intelligent diet planning',
+      'interactive dietitian',
+      'AI nutrition guidance',
+      'personalized diet plans',
       'nutrition consultation',
-      'dietitian app',
-      'wellness platform'
+      'dietitian platform',
+      'smart meal planning'
     ],
-    ogImage: '/images/nutriwise-og.jpg',
+    ogImage: '/images/dietint-og.jpg',
     twitterCard: 'summary_large_image'
   },
   
   // Business Information
   business: {
-    name: 'NutriWise Nutrition Services',
-    type: 'Nutrition Consulting Platform',
+    name: 'DietInt Nutrition Platform',
+    type: 'Intelligent Nutrition Interaction Platform',
     founded: '2024',
-    mission: 'To make intelligent nutrition guidance accessible to everyone through personalized, AI-powered solutions.',
-    vision: 'A world where everyone has access to smart, personalized nutrition guidance for optimal health.',
+    mission: 'To revolutionize nutrition guidance by combining artificial intelligence with seamless human interaction for personalized health outcomes.',
+    vision: 'A world where intelligent nutrition guidance and expert interaction create lasting health transformations for everyone.',
     values: [
-      'Evidence-based nutrition',
+      'Intelligent nutrition solutions',
+      'Seamless interaction experience',
+      'Evidence-based recommendations',
       'Personalized approach',
-      'Technology-driven solutions',
-      'Holistic wellness',
-      'Accessible healthcare'
+      'Accessible expert guidance'
     ]
   },
   
@@ -91,23 +91,23 @@ export const BRAND_CONFIG = {
     main: [
       {
         icon: '🧠',
-        title: 'AI-Powered Insights',
-        description: 'Smart recommendations based on your unique health profile'
+        title: 'Diet Intelligence',
+        description: 'Smart AI-powered nutrition recommendations that adapt to your needs'
       },
       {
-        icon: '📋',
-        title: 'Personalized Plans',
-        description: 'Custom diet plans tailored to your goals and preferences'
+        icon: '💬',
+        title: 'Interactive Consultations',
+        description: 'Seamless real-time interaction with expert dietitians'
       },
       {
-        icon: '📱',
-        title: 'Smart Tracking',
-        description: 'Intelligent progress monitoring with actionable insights'
+        icon: '🔄',
+        title: 'Adaptive Learning',
+        description: 'Platform learns from your progress and adjusts recommendations'
       },
       {
         icon: '🎯',
-        title: 'Goal Achievement',
-        description: 'Reach your health goals with expert guidance and AI support'
+        title: 'Intelligent Tracking',
+        description: 'Smart monitoring with interactive feedback and insights'
       }
     ]
   }

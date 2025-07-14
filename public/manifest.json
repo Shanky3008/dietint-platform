@@ -1,12 +1,12 @@
 {
-  "name": "NutriWise - Intelligent Nutrition & Personalized Results",
-  "short_name": "NutriWise",
-  "description": "AI-powered nutrition guidance and personalized diet plans for optimal health. Connect with expert dietitians and achieve your wellness goals.",
+  "name": "DietInt - Diet Intelligence & Interaction Platform",
+  "short_name": "DietInt",
+  "description": "Intelligent nutrition guidance through seamless interaction with expert dietitians. Achieve your wellness goals with personalized diet plans and smart recommendations.",
   "id": "/",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "#2E8B57",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
@@ -68,14 +68,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "NutriWise Dashboard"
+      "label": "DietInt Dashboard"
     },
     {
       "src": "/screenshots/mobile-screenshot.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "NutriWise Mobile View"
+      "label": "DietInt Mobile View"
     }
   ],
   "shortcuts": [
