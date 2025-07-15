@@ -16,7 +16,7 @@ const faqData: FAQItem[] = [
   {
     id: '1',
     category: 'Getting Started',
-    question: 'How do I create an account on NutriConnect?',
+    question: 'How do I create an account on DietInt?',
     answer: 'Creating an account is simple! Click the "Get Started" button on our homepage, choose whether you\'re a client looking for nutrition guidance or a dietitian offering services, fill in your basic information, verify your email, and complete your profile. For dietitians, additional verification steps ensure professional credentials.',
     tags: ['account', 'registration', 'setup']
   },
@@ -121,14 +121,14 @@ const faqData: FAQItem[] = [
     id: '15',
     category: 'Technical Support',
     question: 'How do I install the mobile app?',
-    answer: 'For Android: Download the APK file, enable installation from unknown sources in your security settings, and install. For iOS: Open nutriconnect.com in Safari, tap the share button, and select "Add to Home Screen" to install the web app.',
+    answer: 'For Android: Download the APK file, enable installation from unknown sources in your security settings, and install. For iOS: Open dietint.com in Safari, tap the share button, and select "Add to Home Screen" to install the web app.',
     tags: ['installation', 'mobile app', 'Android APK', 'iOS PWA']
   },
   {
     id: '16',
     category: 'Technical Support',
     question: 'What browsers are supported?',
-    answer: 'NutriConnect works best on modern browsers including Chrome (recommended), Firefox, Safari, and Edge. We recommend keeping your browser updated for the best experience and security. The video calling feature requires camera and microphone permissions.',
+    answer: 'DietInt works best on modern browsers including Chrome (recommended), Firefox, Safari, and Edge. We recommend keeping your browser updated for the best experience and security. The video calling feature requires camera and microphone permissions.',
     tags: ['browsers', 'compatibility', 'requirements', 'video calls']
   },
   {
@@ -257,7 +257,7 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
           <p className="text-xl text-blue-100">
-            Find answers to common questions about NutriConnect
+            Find answers to common questions about DietInt
           </p>
         </div>
       </div>

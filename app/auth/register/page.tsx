@@ -102,7 +102,7 @@ export default function RegisterPage() {
               <Box sx={{ textAlign: 'center', mb: 3 }}>
                 <PersonAdd sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
                 <Typography component="h1" variant="h4" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
-                  Join NutriConnect
+                  Join DietInt
                 </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                   Start your health transformation journey today

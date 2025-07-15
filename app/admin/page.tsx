@@ -341,7 +341,7 @@ export default function AdminDashboard() {
                   Admin Dashboard
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
-                  NutriConnect Management Portal
+                  DietInt Management Portal
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
                   <Chip label="Administrator" color="primary" size="small" />

@@ -72,7 +72,7 @@ export default function AboutPage() {
                 Meet Our Expert
               </Typography>
               <Typography variant="h6" color="text.secondary" sx={{ maxWidth: '800px', mx: 'auto' }}>
-                Get to know the nutritionist behind NutriConnect's personalized approach to dietary wellness.
+                Get to know the nutritionist behind DietInt's personalized approach to dietary wellness.
               </Typography>
             </Box>
             
@@ -140,7 +140,7 @@ export default function AboutPage() {
                     "A lifestyle change is the key to lead a healthy life and your health coach (nutritionist) is the one who will guide you to reach the light of that tunnel."
                   </Typography>
                   <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
-                    My philosophy centers on the belief that I will become your guide, who will constantly motivate and let you be the driver of your car to reach your destination. At NutriConnect, my approach focuses on "the most liked way of following diet with expected results" by enhancing daily eating routine patterns with AT-HOME foods, following research-based concepts with day-to-day monitoring, and allowing the body to follow its signals for healthy weight loss.
+                    My philosophy centers on the belief that I will become your guide, who will constantly motivate and let you be the driver of your car to reach your destination. At DietInt, my approach focuses on "the most liked way of following diet with expected results" by enhancing daily eating routine patterns with AT-HOME foods, following research-based concepts with day-to-day monitoring, and allowing the body to follow its signals for healthy weight loss.
                   </Typography>
                   <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
                     With expertise in nutrition, exercise, sleep, and stress management, I provide holistic care that addresses all aspects of wellness. My method emphasizes sustainable lifestyle changes over extreme measures, ensuring that healthy eating becomes a natural and enjoyable part of your daily routine.
@@ -221,7 +221,7 @@ export default function AboutPage() {
             <Card sx={{ maxWidth: 600, mx: 'auto' }}>
               <CardContent sx={{ p: 4 }}>
                 <Typography variant="h6" gutterBottom color="primary.main" sx={{ fontWeight: 'bold' }}>
-                  NutriConnect
+                  DietInt
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.6 }}>
                   Nutrition & Wellness Center<br />

@@ -118,7 +118,7 @@ export default function FeaturesSection() {
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography variant="h3" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'text.primary' }}>
-            {content.features?.title?.value || `Why Choose ${content.branding?.app_name?.value || 'NutriConnect'}?`}
+            {content.features?.title?.value || `Why Choose ${content.branding?.app_name?.value || 'DietInt'}?`}
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
             {content.features?.subtitle?.value || 'Everything you need for your nutrition journey'}
