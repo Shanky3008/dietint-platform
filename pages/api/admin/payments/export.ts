@@ -87,7 +87,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         'Commission'
       ];
 
-      const csvRows = payments.map(payment => [
+      const csvRows = payments.map((payment: any) => [
         payment.payment_id,
         payment.client_name,
         payment.client_email,
@@ -104,7 +104,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const csvContent = [
         csvHeaders.join(','),
-        ...csvRows.map(row => row.map(cell => `"${cell}"`).join(','))
+        ...csvRows.map((row: any) => row.map((cell: any) => `"${cell}"`).join(','))
       ].join('\n');
 
       res.setHeader('Content-Type', 'text/csv');
@@ -133,8 +133,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           <div class="summary">
             <h3>Summary (${range})</h3>
             <p><strong>Total Payments:</strong> ${payments.length}</p>
-            <p><strong>Total Revenue:</strong> $${payments.filter(p => p.status === 'completed').reduce((sum, p) => sum + p.amount, 0).toFixed(2)}</p>
-            <p><strong>Total Commission:</strong> $${payments.filter(p => p.status === 'completed').reduce((sum, p) => sum + (p.amount * 0.15), 0).toFixed(2)}</p>
+            <p><strong>Total Revenue:</strong> $${payments.filter((p: any) => p.status === 'completed').reduce((sum: any, p: any) => sum + p.amount, 0).toFixed(2)}</p>
+            <p><strong>Total Commission:</strong> $${payments.filter((p: any) => p.status === 'completed').reduce((sum: any, p: any) => sum + (p.amount * 0.15), 0).toFixed(2)}</p>
             <p><strong>Generated:</strong> ${new Date().toLocaleDateString()}</p>
           </div>
           
@@ -151,7 +151,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               </tr>
             </thead>
             <tbody>
-              ${payments.map(payment => `
+              ${payments.map((payment: any) => `
                 <tr>
                   <td>${payment.payment_id}</td>
                   <td>${payment.client_name}<br><small>${payment.client_email}</small></td>
@@ -180,7 +180,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Payment export API error:', error);
     res.status(500).json({ 
       error: 'Failed to export payment reports',
-      details: error.message 
+      details: error instanceof Error ? error.message : String(error)
     });
   }
 }

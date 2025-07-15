@@ -19,6 +19,8 @@ const PWAInstallPrompt: React.FC = () => {
   const [showIOSInstructions, setShowIOSInstructions] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     // Check if already installed
     if (window.matchMedia('(display-mode: standalone)').matches) {
       setIsInstalled(true);
@@ -86,24 +88,30 @@ const PWAInstallPrompt: React.FC = () => {
   const handleDismiss = () => {
     setShowInstallPrompt(false);
     // Don't show again for this session
-    sessionStorage.setItem('pwa-install-dismissed', 'true');
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('pwa-install-dismissed', 'true');
+    }
   };
 
   const handleIOSDismiss = () => {
     setShowIOSInstructions(false);
     // Don't show again for 7 days
-    localStorage.setItem('pwa-ios-dismissed', Date.now().toString());
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pwa-ios-dismissed', Date.now().toString());
+    }
   };
 
   // Don't show if already installed or dismissed
-  if (isInstalled || sessionStorage.getItem('pwa-install-dismissed')) {
+  if (typeof window !== 'undefined' && (isInstalled || sessionStorage.getItem('pwa-install-dismissed'))) {
     return null;
   }
 
   // Check if iOS instructions were dismissed recently
-  const iosDismissed = localStorage.getItem('pwa-ios-dismissed');
-  if (iosDismissed && Date.now() - parseInt(iosDismissed) < 7 * 24 * 60 * 60 * 1000) {
-    return null;
+  if (typeof window !== 'undefined') {
+    const iosDismissed = localStorage.getItem('pwa-ios-dismissed');
+    if (iosDismissed && Date.now() - parseInt(iosDismissed) < 7 * 24 * 60 * 60 * 1000) {
+      return null;
+    }
   }
 
   return (

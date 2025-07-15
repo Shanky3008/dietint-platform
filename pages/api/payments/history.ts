@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Fetch payments for the user
-    const payments = await db.all(`
+    const payments = await db.query(`
       SELECT 
         id,
         amount,
@@ -52,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     `, [user.id]);
 
     // Format payments data
-    const formattedPayments = payments.map(payment => ({
+    const formattedPayments = payments.map((payment: any) => ({
       ...payment,
       service_name: payment.service_name || 'NutriWise Service',
       currency: payment.currency || 'USD'
@@ -73,7 +73,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Payment history API error:', error);
     res.status(500).json({ 
       error: 'Failed to fetch payment history',
-      details: error.message 
+      details: error instanceof Error ? error.message : String(error)
     });
   }
 }

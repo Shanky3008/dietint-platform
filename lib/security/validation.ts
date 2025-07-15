@@ -427,4 +427,3 @@ export function withValidation(schema: ValidationSchema) {
   };
 }
 
-export { Validator, Sanitizer };

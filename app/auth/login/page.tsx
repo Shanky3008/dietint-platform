@@ -75,8 +75,10 @@ export default function LoginPage() {
       }
 
       // Store token and user data in localStorage
-      localStorage.setItem('token', result.token);
-      localStorage.setItem('user', JSON.stringify(result.user));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('user', JSON.stringify(result.user));
+      }
 
       // Update Redux state
       dispatch(loginSuccess({

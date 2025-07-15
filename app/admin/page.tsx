@@ -207,6 +207,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (!isAuthenticated) {
+      if (typeof window === 'undefined') return;
       const token = localStorage.getItem('token');
       if (!token) {
         router.push('/auth/login');
@@ -227,6 +228,7 @@ export default function AdminDashboard() {
   const fetchContent = async () => {
     setContentLoading(true);
     try {
+      if (typeof window === 'undefined') return;
       const token = localStorage.getItem('token');
       const response = await fetch('/api/content', {
         headers: {
@@ -247,6 +249,7 @@ export default function AdminDashboard() {
   // Update content
   const updateContent = async (section: string, key: string, value: string) => {
     try {
+      if (typeof window === 'undefined') return;
       const token = localStorage.getItem('token');
       const response = await fetch(`/api/content/${section}/${key}`, {
         method: 'PUT',

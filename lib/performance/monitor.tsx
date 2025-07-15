@@ -1,4 +1,5 @@
 // Performance monitoring and optimization utilities
+import React from 'react';
 export class PerformanceMonitor {
   private static instance: PerformanceMonitor;
   private metrics: Map<string, number[]> = new Map();
@@ -124,8 +125,8 @@ export class PerformanceMonitor {
 
   private sendToAnalytics(name: string, value: number) {
     // Send to analytics service (Google Analytics, etc.)
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'web_vitals', {
+    if (typeof window !== 'undefined' && typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'web_vitals', {
         event_category: 'Performance',
         event_label: name,
         value: Math.round(value),
@@ -269,8 +270,8 @@ export function usePerformanceMonitor() {
   return {
     getMetrics: () => monitor.getMetrics(),
     getAverageMetric: (name: string) => monitor.getAverageMetric(name),
-    measureAsync: <T>(name: string, fn: () => Promise<T>) => monitor.measureAsync(name, fn),
-    measureSync: <T>(name: string, fn: () => T) => monitor.measureSync(name, fn),
+    measureAsync: (name: string, fn: () => Promise<any>) => monitor.measureAsync(name, fn),
+    measureSync: (name: string, fn: () => any) => monitor.measureSync(name, fn),
     analyzeResources: () => monitor.analyzeResources(),
     getMemoryUsage: () => monitor.getMemoryUsage(),
   };

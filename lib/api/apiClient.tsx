@@ -1,4 +1,5 @@
 // Enhanced API client with loading states and error handling
+import React from 'react';
 import { toast } from 'react-hot-toast';
 
 interface ApiResponse<T = any> {
@@ -85,9 +86,9 @@ class ApiClient {
       }
 
       // Add default headers
-      const defaultHeaders = {
+      const defaultHeaders: Record<string, string> = {
         'Content-Type': 'application/json',
-        ...options.headers,
+        ...(options.headers as Record<string, string>),
       };
 
       // Add auth token if available
@@ -268,7 +269,7 @@ class ApiClient {
       }
 
       return {
-        data: results.map(r => r.data),
+        data: results.map(r => r.data) as T[],
         success: !hasErrors,
         status: 200,
       };
@@ -297,12 +298,12 @@ export function useApiLoading(endpoint: string) {
 
 // Higher-order component for API loading
 export function withApiLoading<P extends object>(
-  Component: React.ComponentType<P>,
+  WrappedComponent: React.ComponentType<P>,
   endpoint: string
 ) {
-  return function WrappedComponent(props: P) {
+  return function WithLoadingComponent(props: P) {
     const loading = useApiLoading(endpoint);
-    return <Component {...props} loading={loading} />;
+    return <WrappedComponent {...props} loading={loading} />;
   };
 }
 

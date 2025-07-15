@@ -108,6 +108,8 @@ export default function PaymentsPage() {
 
   const fetchPayments = async () => {
     try {
+      if (typeof window === 'undefined') return;
+      
       const token = localStorage.getItem('token');
       const response = await fetch('/api/payments/history', {
         headers: {
@@ -129,6 +131,8 @@ export default function PaymentsPage() {
 
   const downloadInvoice = async (paymentId: string) => {
     try {
+      if (typeof window === 'undefined') return;
+      
       const token = localStorage.getItem('token');
       const response = await fetch(`/api/payments/${paymentId}/invoice`, {
         headers: {
@@ -154,6 +158,8 @@ export default function PaymentsPage() {
 
   const emailInvoice = async (paymentId: string) => {
     try {
+      if (typeof window === 'undefined') return;
+      
       const token = localStorage.getItem('token');
       const response = await fetch(`/api/payments/${paymentId}/email-invoice`, {
         method: 'POST',

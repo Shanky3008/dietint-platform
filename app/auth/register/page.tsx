@@ -67,7 +67,9 @@ export default function RegisterPage() {
       }
 
       // Store token in localStorage
-      localStorage.setItem('token', result.token);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('token', result.token);
+      }
 
       // Update Redux state
       dispatch(loginSuccess({

@@ -111,6 +111,7 @@ export default function AdminPaymentsPage() {
 
   const fetchPaymentReports = async () => {
     try {
+      if (typeof window === 'undefined') return;
       const token = localStorage.getItem('token');
       const response = await fetch(`/api/admin/payments/reports?range=${dateRange}`, {
         headers: {
@@ -132,6 +133,7 @@ export default function AdminPaymentsPage() {
 
   const exportReports = async (format: 'csv' | 'pdf') => {
     try {
+      if (typeof window === 'undefined') return;
       const token = localStorage.getItem('token');
       const response = await fetch(`/api/admin/payments/export?format=${format}&range=${dateRange}`, {
         headers: {

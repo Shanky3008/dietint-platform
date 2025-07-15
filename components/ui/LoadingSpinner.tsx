@@ -155,7 +155,10 @@ export function LoadingButton({
 }
 
 // Page Loading Overlay
-export function PageLoadingOverlay({ loading, message = 'Loading...' }) {
+export function PageLoadingOverlay({ loading, message = 'Loading...' }: { 
+  loading: boolean; 
+  message?: string 
+}) {
   if (!loading) return null;
 
   return (

@@ -1,6 +1,7 @@
 // CSRF (Cross-Site Request Forgery) protection
 import { NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
+import React from 'react';
 
 interface CSRFOptions {
   secret: string;
@@ -180,7 +181,7 @@ export function securityHeaders() {
     res.setHeader('Content-Security-Policy', csp);
     
     // Strict Transport Security (HTTPS only)
-    if (req.headers['x-forwarded-proto'] === 'https' || req.connection.encrypted) {
+    if (req.headers['x-forwarded-proto'] === 'https' || (req.connection as any).encrypted) {
       res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
     }
     
@@ -219,7 +220,7 @@ export function withCSRF(options: CSRFOptions) {
           console.error('API handler error:', error);
           res.status(500).json({
             error: 'Internal server error',
-            ...(process.env.NODE_ENV === 'development' && { details: error.message }),
+            ...(process.env.NODE_ENV === 'development' && { details: error instanceof Error ? error.message : String(error) }),
           });
         }
       });

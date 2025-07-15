@@ -86,7 +86,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Email invoice API error:', error);
     res.status(500).json({ 
       error: 'Failed to send invoice email',
-      details: error.message 
+      details: error instanceof Error ? error.message : String(error)
     });
   }
 }

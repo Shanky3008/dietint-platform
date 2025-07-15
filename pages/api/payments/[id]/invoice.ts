@@ -67,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Check if file exists
-    if (!fs.existsSync(result.filePath)) {
+    if (!result.filePath || !fs.existsSync(result.filePath)) {
       return res.status(500).json({ error: 'Invoice file not found' });
     }
 
@@ -90,7 +90,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Invoice generation API error:', error);
     res.status(500).json({ 
       error: 'Failed to generate invoice',
-      details: error.message 
+      details: error instanceof Error ? error.message : String(error)
     });
   }
 }

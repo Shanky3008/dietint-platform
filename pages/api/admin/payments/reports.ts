@@ -82,7 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     `);
 
     // Format payments data
-    const formattedPayments = payments.map(payment => ({
+    const formattedPayments = payments.map((payment: any) => ({
       ...payment,
       service_name: payment.service_name || 'NutriWise Service',
       currency: payment.currency || 'USD',
@@ -106,7 +106,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Payment reports API error:', error);
     res.status(500).json({ 
       error: 'Failed to fetch payment reports',
-      details: error.message 
+      details: error instanceof Error ? error.message : String(error)
     });
   }
 }

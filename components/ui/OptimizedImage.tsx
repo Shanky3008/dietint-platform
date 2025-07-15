@@ -85,7 +85,7 @@ export function OptimizedImage({
     quality,
     priority,
     sizes: sizes || fill ? '100vw' : undefined,
-    placeholder: placeholder === 'blur' ? 'blur' : 'empty',
+    placeholder: placeholder === 'blur' ? ('blur' as const) : ('empty' as const),
     blurDataURL: blurDataURL || (placeholder === 'blur' && width && height ? 
       generateBlurDataURL(width, height) : undefined),
     onLoad: handleLoad,

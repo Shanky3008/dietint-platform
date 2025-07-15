@@ -104,8 +104,13 @@ export default function EnhancedDashboardPage() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      const token = localStorage.getItem('token');
-      if (!token) {
+      if (typeof window !== 'undefined') {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          router.push('/auth/login');
+          return;
+        }
+      } else {
         router.push('/auth/login');
         return;
       }
