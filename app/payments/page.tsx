@@ -352,7 +352,7 @@ export default function PaymentsPage() {
                         <TableCell sx={{ fontFamily: 'monospace' }}>
                           #{payment.id}
                         </TableCell>
-                        <TableCell>{payment.service_name || 'NutriWise Service'}</TableCell>
+                        <TableCell>{payment.service_name || 'DietInt Service'}</TableCell>
                         <TableCell sx={{ fontWeight: 'bold' }}>
                           {payment.currency} ${payment.amount}
                         </TableCell>
@@ -414,7 +414,7 @@ export default function PaymentsPage() {
                       </Box>
                       
                       <Typography variant="body2" color="text.secondary" gutterBottom>
-                        {payment.service_name || 'NutriWise Service'}
+                        {payment.service_name || 'DietInt Service'}
                       </Typography>
                       
                       <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>

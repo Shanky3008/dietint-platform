@@ -71,7 +71,7 @@ export default function ContactPage() {
     {
       icon: <Email sx={{ fontSize: 40, color: 'primary.main' }} />,
       title: 'Email',
-      details: 'gouri@nutriconnect.com',
+      details: 'gouri@dietint.com',
       subtitle: 'We reply within 24 hours'
     },
     {

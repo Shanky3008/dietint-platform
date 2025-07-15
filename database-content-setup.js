@@ -113,8 +113,8 @@ async function setupContentTables() {
             { section: 'testimonial_3', content_key: 'avatar', content_value: 'ER' },
 
             // Contact Information
-            { section: 'contact', content_key: 'email', content_value: 'contact@nutriwise.com' },
-            { section: 'contact', content_key: 'phone', content_value: '+1 (555) 123-4567' },
+            { section: 'contact', content_key: 'email', content_value: 'contact@dietint.com' },
+            { section: 'contact', content_key: 'phone', content_value: '+1 (555) 123-DIET' },
             { section: 'contact', content_key: 'address', content_value: '123 Health Street, Wellness City, WC 12345' },
             { section: 'contact', content_key: 'hours', content_value: 'Mon-Fri: 9AM-6PM, Sat: 10AM-4PM' },
 

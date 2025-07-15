@@ -102,7 +102,7 @@ const sampleUsers = [
   {
     id: 3,
     fullName: 'Dr. Priya Admin',
-    email: 'admin@nutriconnect.com',
+    email: 'admin@dietint.com',
     role: 'admin',
     status: 'active',
     joinDate: '2024-01-01',

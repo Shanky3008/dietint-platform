@@ -360,7 +360,7 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:support@nutriconnect.com"
+              href="mailto:support@dietint.com"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Email Support
@@ -374,8 +374,8 @@ export default function FAQPage() {
           </div>
           
           <div className="mt-6 text-sm text-gray-500">
-            <p>📧 Email: support@nutriconnect.com</p>
-            <p>📞 Phone: 1-800-NUTRI-HELP</p>
+            <p>📧 Email: support@dietint.com</p>
+            <p>📞 Phone: 1-800-DIET-INT</p>
             <p>⏰ Hours: Monday-Friday, 9 AM - 6 PM EST</p>
           </div>
         </div>

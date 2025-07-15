@@ -1,4 +1,4 @@
-# 🌱 NutriConnect by Gouri Priya Mylavarapu
+# 🧠💬 DietInt by Gouri Priya Mylavarapu
 
 > **Professional Nutrition Platform with AT-HOME Foods Approach**  
 > *Transforming Lives Through Sustainable Nutrition & Traditional Wisdom*
@@ -10,7 +10,7 @@
 
 ## 👩‍⚕️ About the Platform
 
-**NutriConnect** is a comprehensive nutrition and wellness platform created by **Gouri Priya Mylavarapu**, MSc Nutrition, with 11+ years of experience transforming lives through sustainable dietary practices. The platform embodies her proven **AT-HOME foods approach** - using everyday kitchen ingredients rather than expensive supplements or special diet products.
+**DietInt** is a comprehensive nutrition and wellness platform created by **Gouri Priya Mylavarapu**, MSc Nutrition, with 11+ years of experience transforming lives through sustainable dietary practices. The platform embodies her proven **AT-HOME foods approach** - using everyday kitchen ingredients rather than expensive supplements or special diet products.
 
 ### 🎯 **Our Mission**
 *"A lifestyle change is the key to lead a healthy life and your health coach (nutritionist) is the one who will guide you to reach the light of that tunnel."* - Gouri Priya Mylavarapu
@@ -137,14 +137,14 @@ JWT_SECRET=your-jwt-secret-here
 # Email Configuration
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
+EMAIL_USER=your-email@dietint.com
 EMAIL_PASS=your-app-password
 
 # WhatsApp Integration (Optional)
 WHATSAPP_API_KEY=your-whatsapp-api-key
 
 # Admin Configuration
-ADMIN_EMAIL=gouri@nutriconnect.com
+ADMIN_EMAIL=gouri@dietint.com
 ADMIN_PASSWORD=secure-admin-password
 
 # Payment Integration (Production)
@@ -364,7 +364,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 **Support**
 
-- **📧 Email**: gouri@nutriconnect.com
+- **📧 Email**: gouri@dietint.com
 - **📱 Phone**: +91 99999 88888
 - **📍 Location**: Greater Hyderabad Area, Telangana, India
 - **🕐 Hours**: Monday-Friday 10:00 AM - 7:00 PM IST

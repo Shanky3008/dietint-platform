@@ -125,7 +125,7 @@ const PWAInstallPrompt: React.FC = () => {
       >
         <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <GetAppIcon color="primary" />
-          Install NutriConnect
+          Install DietInt
           <IconButton
             aria-label="close"
             onClick={handleDismiss}
@@ -144,7 +144,7 @@ const PWAInstallPrompt: React.FC = () => {
             </Typography>
             
             <Typography variant="body1" color="text.secondary" paragraph>
-              Install NutriConnect on your device for:
+              Install DietInt on your device for:
             </Typography>
             
             <Box component="ul" sx={{ textAlign: 'left', pl: 3 }}>
@@ -194,7 +194,7 @@ const PWAInstallPrompt: React.FC = () => {
         <DialogContent>
           <Box sx={{ py: 2 }}>
             <Typography variant="h6" gutterBottom>
-              Add NutriConnect to your home screen
+              Add DietInt to your home screen
             </Typography>
             
             <Typography variant="body1" color="text.secondary" paragraph>
