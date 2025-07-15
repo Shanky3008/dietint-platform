@@ -25,7 +25,6 @@ import Navbar from '@/components/Navbar';
 import { PersonAdd, Login } from '@mui/icons-material';
 
 const schema = yup.object({
-  username: yup.string().required('Username is required').min(3, 'Username must be at least 3 characters'),
   email: yup.string().required('Email is required').email('Invalid email format'),
   password: yup.string().required('Password is required').min(8, 'Password must be at least 8 characters'),
   fullName: yup.string().required('Full name is required'),
@@ -117,7 +116,7 @@ export default function RegisterPage() {
 
               <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       {...register('fullName')}
                       required
@@ -127,17 +126,6 @@ export default function RegisterPage() {
                       autoFocus
                       error={!!errors.fullName}
                       helperText={errors.fullName?.message}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      {...register('username')}
-                      required
-                      fullWidth
-                      label="Username"
-                      autoComplete="username"
-                      error={!!errors.username}
-                      helperText={errors.username?.message}
                     />
                   </Grid>
                   <Grid item xs={12}>

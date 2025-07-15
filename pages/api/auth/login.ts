@@ -1,6 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { getDatabaseAdapter } from '../../../lib/database';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3000';
+const JWT_SECRET = process.env.JWT_SECRET || 'dietint_secret_key_2024';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,28 +14,62 @@ export default async function handler(
   }
 
   try {
-    // Forward the request to the backend server
-    const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(req.body),
-    });
+    const { email, password } = req.body;
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      return res.status(response.status).json(data);
+    // Validate required fields
+    if (!email || !password) {
+      return res.status(400).json({ 
+        error: 'Email and password are required' 
+      });
     }
 
-    // Return successful response
-    res.status(200).json(data);
+    const db = await getDatabaseAdapter();
+
+    // Find user by email
+    const user = await db.get(
+      'SELECT id, fullName, email, password, role FROM users WHERE email = $1',
+      [email]
+    );
+
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    // Verify password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { 
+        userId: user.id, 
+        email: user.email, 
+        role: user.role,
+        fullName: user.fullName 
+      },
+      JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    // Return success response
+    res.status(200).json({
+      message: 'Login successful',
+      user: {
+        id: user.id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role
+      },
+      token
+    });
+
   } catch (error) {
-    console.error('Login API Error:', error);
+    console.error('Login error:', error);
     res.status(500).json({ 
       error: 'Internal server error',
-      message: 'Failed to connect to authentication server'
+      message: 'Failed to authenticate user'
     });
   }
 }

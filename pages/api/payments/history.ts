@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const db = await getDatabaseAdapter();
     
     // Get user ID from token (simplified - in real app, verify JWT)
-    const user = await db.get('SELECT * FROM users WHERE id = ?', [1]); // For demo, using user ID 1
+    const user = await db.get('SELECT * FROM users WHERE id = $1', [1]); // For demo, using user ID 1
     
     if (!user) {
       return res.status(401).json({ error: 'Invalid token' });
@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         created_at,
         description
       FROM payments 
-      WHERE user_id = ? 
+      WHERE user_id = $1 
       ORDER BY payment_date DESC, created_at DESC
     `, [user.id]);
 
@@ -48,13 +48,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         COALESCE(SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END), 0) as pending_amount,
         MAX(CASE WHEN status = 'completed' THEN payment_date END) as last_payment_date
       FROM payments 
-      WHERE user_id = ?
+      WHERE user_id = $1
     `, [user.id]);
 
     // Format payments data
     const formattedPayments = payments.map((payment: any) => ({
       ...payment,
-      service_name: payment.service_name || 'NutriWise Service',
+      service_name: payment.service_name || 'DietInt Service',
       currency: payment.currency || 'USD'
     }));
 

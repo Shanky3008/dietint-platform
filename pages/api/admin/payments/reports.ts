@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const db = await getDatabaseAdapter();
     
     // Get user ID from token (simplified - in real app, verify JWT and check admin role)
-    const user = await db.get('SELECT * FROM users WHERE id = ?', [1]); // For demo
+    const user = await db.get('SELECT * FROM users WHERE id = $1', [1]); // For demo
     
     if (!user) {
       return res.status(401).json({ error: 'Invalid token' });
@@ -84,7 +84,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Format payments data
     const formattedPayments = payments.map((payment: any) => ({
       ...payment,
-      service_name: payment.service_name || 'NutriWise Service',
+      service_name: payment.service_name || 'DietInt Service',
       currency: payment.currency || 'USD',
       commission: parseFloat((payment.amount * 0.15).toFixed(2))
     }));

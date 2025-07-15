@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const db = await getDatabaseAdapter();
     
     // Get user ID from token (simplified - in real app, verify JWT)
-    const user = await db.get('SELECT * FROM users WHERE id = ?', [1]); // For demo, using user ID 1
+    const user = await db.get('SELECT * FROM users WHERE id = $1', [1]); // For demo, using user ID 1
     
     if (!user) {
       return res.status(401).json({ error: 'Invalid token' });
@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Get payment details
     const payment = await db.get(`
       SELECT * FROM payments 
-      WHERE id = ? AND user_id = ?
+      WHERE id = $1 AND user_id = $1
     `, [id, user.id]);
 
     if (!payment) {
@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       SELECT a.*, u.fullName as dietitian_name 
       FROM appointments a
       LEFT JOIN users u ON a.dietitian_id = u.id
-      WHERE a.payment_id = ?
+      WHERE a.payment_id = $1
     `, [payment.id]);
 
     // Prepare customer data

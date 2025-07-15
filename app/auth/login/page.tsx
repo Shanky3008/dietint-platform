@@ -24,7 +24,7 @@ import Navbar from '@/components/Navbar';
 import { LoginOutlined, PersonAdd } from '@mui/icons-material';
 
 const schema = yup.object({
-  username: yup.string().required('Username or email is required'),
+  email: yup.string().required('Email is required').email('Invalid email format'),
   password: yup.string().required('Password is required'),
 });
 
@@ -132,15 +132,16 @@ export default function LoginPage() {
 
               <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                 <TextField
-                  {...register('username')}
+                  {...register('email')}
                   margin="normal"
                   required
                   fullWidth
-                  label="Username or Email"
-                  autoComplete="username"
+                  label="Email Address"
+                  type="email"
+                  autoComplete="email"
                   autoFocus
-                  error={!!errors.username}
-                  helperText={errors.username?.message}
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
                   sx={{ mb: 2 }}
                 />
                 <TextField

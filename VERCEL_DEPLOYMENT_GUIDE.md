@@ -1,439 +1,185 @@
-# 🚀 NutriConnect Vercel Deployment Guide
+# Vercel Deployment Guide for DietInt
 
-Complete step-by-step guide to deploy NutriConnect to Vercel with PostgreSQL database.
+## 🚀 Pre-deployment Checklist
 
-## 📋 Prerequisites
+### ✅ Completed Tasks
+- [x] All branding updated to DietInt
+- [x] Real testimonials from gouripriyadiet.com integrated
+- [x] Database migrated to PostgreSQL
+- [x] All API routes use PostgreSQL syntax
+- [x] Build tested successfully
+- [x] Environment variables configured
 
-### 1. Required Accounts
-- [Vercel Account](https://vercel.com) (free tier available)
-- [GitHub Account](https://github.com) for repository hosting
-- [Stripe Account](https://stripe.com) for payment processing
+## 📋 Step-by-Step Deployment
 
-### 2. Local Setup
-```bash
-# Install Vercel CLI
-npm install -g vercel
+### 1. Delete Existing Vercel Project
+1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+2. Find your existing project
+3. Go to Settings → General → Delete Project
+4. Confirm deletion
 
-# Login to Vercel
-vercel login
-```
+### 2. Set up PostgreSQL Database
+Choose one of these options:
 
-## 🗄️ Database Setup
+#### Option A: Vercel Postgres (Recommended)
+1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+2. Click "Storage" → "Create Database"
+3. Choose "Postgres" → "Continue"
+4. Name: `dietint-db` → "Create"
+5. Copy the connection string
 
-### 1. Create Vercel Postgres Database
-```bash
-# Navigate to project directory
-cd /path/to/nutriconnect
+#### Option B: Supabase
+1. Go to [Supabase](https://supabase.com)
+2. Create new project: `dietint-db`
+3. Go to Settings → Database → Connection string
+4. Copy the connection string
 
-# Create database
-vercel postgres create nutriconnect-db
-```
+### 3. Initialize Database Schema
+Connect to your PostgreSQL database and run these files in order:
 
-### 2. Get Database URL
-```bash
-# Get connection string
-vercel env pull .env.local
-
-# Your DATABASE_URL will be automatically added
-```
-
-## 📁 Repository Preparation
-
-### 1. Create GitHub Repository
-```bash
-# Initialize git (if not already done)
-git init
-
-# Add remote repository
-git remote add origin https://github.com/yourusername/nutriconnect.git
-
-# Add all files
-git add .
-
-# Commit changes
-git commit -m "Initial commit for Vercel deployment
-
-🤖 Generated with Claude Code
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
-
-# Push to GitHub
-git push -u origin main
-```
-
-### 2. Required Files Checklist
-- ✅ `vercel.json` - Deployment configuration
-- ✅ `package.json` - Dependencies and scripts
-- ✅ `.env.example` - Environment variables template
-- ✅ `next.config.js` - Next.js configuration
-
-## 🔧 Project Configuration
-
-### 1. Update package.json Scripts
-```json
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "postbuild": "next-sitemap"
-  }
-}
-```
-
-### 2. Verify Next.js Configuration
-```javascript
-// next.config.js
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    domains: ['localhost', 'vercel.app'],
-    formats: ['image/webp', 'image/avif'],
-  },
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
-  },
-}
-
-module.exports = nextConfig;
-```
-
-## 🌐 Deployment Steps
-
-### 1. Connect Repository to Vercel
-```bash
-# Option A: Using Vercel CLI
-vercel
-
-# Option B: Using Vercel Dashboard
-# 1. Go to https://vercel.com/dashboard
-# 2. Click "New Project"
-# 3. Import from GitHub
-# 4. Select nutriconnect repository
-```
-
-### 2. Configure Environment Variables
-```bash
-# Set environment variables using CLI
-vercel env add DATABASE_URL
-vercel env add NEXTAUTH_SECRET
-vercel env add NEXTAUTH_URL
-vercel env add STRIPE_SECRET_KEY
-vercel env add STRIPE_PUBLISHABLE_KEY
-vercel env add STRIPE_WEBHOOK_SECRET
-vercel env add EMAIL_HOST
-vercel env add EMAIL_PORT
-vercel env add EMAIL_USER
-vercel env add EMAIL_PASS
-vercel env add WHATSAPP_API_KEY
-vercel env add ADMIN_EMAIL
-vercel env add ADMIN_PASSWORD
-vercel env add JWT_SECRET
-```
-
-### 3. Database Migration
-```bash
-# Run migration script
-node scripts/migrate-to-postgres.js
-
-# Or use SQL directly
-psql $DATABASE_URL < migrations/001_create_tables.sql
-psql $DATABASE_URL < migrations/002_seed_content.sql
-psql $DATABASE_URL < migrations/003_create_admin_user.sql
-```
-
-### 4. Deploy Application
-```bash
-# Deploy to production
-vercel --prod
-
-# Or push to main branch (auto-deploy)
-git push origin main
-```
-
-## 🔍 Verification Steps
-
-### 1. Check Deployment Status
-```bash
-# Check deployment logs
-vercel logs [deployment-url]
-
-# Check build logs
-vercel build-logs [deployment-url]
-```
-
-### 2. Test Application Features
-1. **Homepage**: https://your-app.vercel.app
-2. **Authentication**: Test login/register
-3. **API Endpoints**: Test `/api/health`
-4. **Database**: Verify data connectivity
-5. **Payments**: Test Stripe integration
-6. **Email**: Test email notifications
-
-### 3. Performance Checks
-- Lighthouse score
-- Core Web Vitals
-- API response times
-- Database query performance
-
-## 📊 Monitoring Setup
-
-### 1. Vercel Analytics
-```bash
-# Enable analytics
-vercel analytics enable
-```
-
-### 2. Error Monitoring
-```javascript
-// lib/monitoring.js
-export function logError(error, context) {
-  console.error('Application Error:', {
-    error: error.message,
-    stack: error.stack,
-    context,
-    timestamp: new Date().toISOString(),
-  });
-}
-```
-
-### 3. Database Monitoring
 ```sql
--- Create monitoring views
-CREATE VIEW active_connections AS
-SELECT * FROM pg_stat_activity 
-WHERE state = 'active';
-
-CREATE VIEW slow_queries AS
-SELECT query, mean_exec_time, calls
-FROM pg_stat_statements
-ORDER BY mean_exec_time DESC
-LIMIT 10;
+-- 1. Run migrations/001_create_tables.sql
+-- 2. Run migrations/002_seed_content.sql  
+-- 3. Run migrations/003_create_admin_user.sql
+-- 4. Run migrations/004_email_logs.sql
+-- 5. Run migrations/005_whatsapp_logs.sql
+-- 6. Run migrations/006_sample_data.sql
 ```
 
-## 🔒 Security Configuration
+### 4. Deploy to Vercel
+1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+2. Click "New Project"
+3. Import your GitHub repository
+4. Configure:
+   - **Framework Preset**: Next.js
+   - **Root Directory**: `./`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `.next`
 
-### 1. Domain Security
+### 5. Configure Environment Variables
+In Vercel Project Settings → Environment Variables, add:
+
 ```bash
-# Add custom domain
-vercel domains add nutriconnect.com
+# Database (REQUIRED)
+POSTGRES_URL=postgresql://username:password@host:port/database
 
-# Configure SSL (automatic with Vercel)
+# Authentication (REQUIRED)
+JWT_SECRET=dietint-super-secret-jwt-key-2024-production
+
+# Basic Configuration
+NODE_ENV=production
+NEXT_TELEMETRY_DISABLED=1
+
+# Email (Optional - for notifications)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+
+# Payment (Optional)
+UPI_ID=dietint@paytm
+PAYEE_NAME=DietInt Services
+MERCHANT_CODE=DIETINT001
+
+# Security
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX=100
 ```
 
-### 2. API Security
-- Rate limiting enabled
-- CORS configured
-- Input validation
-- SQL injection protection
+### 6. Deploy
+1. Click "Deploy"
+2. Wait for deployment to complete
+3. Visit your deployed URL
 
-### 3. Environment Security
-- All secrets in environment variables
-- No hardcoded credentials
-- Secure headers configured
+## 🔧 Post-Deployment Testing
 
-## 🚨 Troubleshooting
+### Test User Journey
+1. **Homepage**: Check branding and testimonials
+2. **Register**: Create a new account
+3. **Login**: Sign in with the created account
+4. **Dashboard**: Verify user dashboard loads
+5. **Admin**: Test admin functionality (if applicable)
+
+### Test Database
+1. Register a new user
+2. Check if user appears in database
+3. Test login with the created user
+4. Verify JWT token generation
+
+## 🛠️ Troubleshooting
 
 ### Common Issues
 
-#### 1. Build Failures
-```bash
-# Check build logs
-vercel logs --app=nutriconnect
+#### Database Connection Issues
+- Verify POSTGRES_URL is correct
+- Check if database is accessible from Vercel
+- Ensure SSL is enabled for production
 
-# Common fixes:
-# - Check package.json dependencies
-# - Verify TypeScript types
-# - Check import/export syntax
-```
+#### Build Failures
+- Check if all dependencies are in package.json
+- Verify TypeScript compilation
+- Run `npm run build` locally first
 
-#### 2. Database Connection Issues
+#### Authentication Issues
+- Verify JWT_SECRET is set
+- Check if users table exists
+- Verify password hashing works
+
+### Debugging Commands
 ```bash
 # Test database connection
-node -e "
-const { Pool } = require('pg');
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err ? err : res.rows[0]);
-  pool.end();
-});
-"
-```
-
-#### 3. Environment Variable Issues
-```bash
-# List environment variables
-vercel env ls
-
-# Update environment variable
-vercel env rm VARIABLE_NAME
-vercel env add VARIABLE_NAME
-```
-
-#### 4. API Route Issues
-```bash
-# Test API endpoint
-curl https://your-app.vercel.app/api/health
-
-# Check API logs
-vercel logs --app=nutriconnect --filter=api
-```
-
-### Performance Issues
-
-#### 1. Slow Database Queries
-```sql
--- Analyze slow queries
-EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'user@example.com';
-
--- Add missing indexes
-CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
-```
-
-#### 2. Large Bundle Size
-```bash
-# Analyze bundle
 npm run build
 
-# Use dynamic imports for large components
-const LargeComponent = dynamic(() => import('./LargeComponent'));
+# Check environment variables
+console.log(process.env.POSTGRES_URL)
+
+# Test API routes
+curl -X POST https://your-domain.vercel.app/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"fullName":"Test User","email":"test@example.com","password":"password123"}'
 ```
 
-## 📈 Post-Deployment Tasks
+## 📊 Performance Optimization
 
-### 1. Domain Setup
-```bash
-# Add custom domain
-vercel domains add nutriconnect.com
-vercel domains add www.nutriconnect.com
+### Already Implemented
+- ✅ PostgreSQL connection pooling
+- ✅ Next.js optimization
+- ✅ API route caching
+- ✅ Image optimization
+- ✅ Code splitting
 
-# Configure DNS records
-# A record: @ → 76.76.19.61
-# CNAME record: www → alias.vercel.app
-```
+### Monitor Performance
+1. Check Vercel Analytics
+2. Monitor database queries
+3. Track API response times
+4. Monitor user registration/login success rates
 
-### 2. SEO Configuration
-```javascript
-// Update sitemap
-// Update robots.txt
-// Add structured data
-// Configure meta tags
-```
+## 🔐 Security Features
 
-### 3. Monitoring Setup
-```bash
-# Set up uptime monitoring
-# Configure error alerts
-# Enable performance monitoring
-# Set up backup schedules
-```
+### Implemented
+- ✅ JWT authentication
+- ✅ bcrypt password hashing
+- ✅ CORS configuration
+- ✅ Rate limiting
+- ✅ Input validation
+- ✅ SQL injection protection
 
-### 4. User Communication
-- Update app store listings
-- Send deployment notifications
-- Update documentation
-- Inform support team
+## 🚨 Important Notes
 
-## 🔄 Continuous Deployment
+1. **Database**: The local SQLite file is NOT used in production
+2. **Environment**: All sensitive data is in environment variables
+3. **Domain**: Update social media links to your actual domain
+4. **SSL**: Vercel provides SSL automatically
+5. **Monitoring**: Set up error tracking for production
 
-### 1. Automatic Deployments
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to Vercel
-on:
-  push:
-    branches: [main]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID }}
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
-```
+## 🎯 Success Criteria
 
-### 2. Environment Management
-- **Development**: Auto-deploy from `develop` branch
-- **Staging**: Auto-deploy from `staging` branch  
-- **Production**: Auto-deploy from `main` branch
+✅ **Deployment successful** when:
+- Homepage loads with DietInt branding
+- User registration works
+- User login works
+- Dashboard displays correctly
+- Database queries execute successfully
+- All API routes respond correctly
 
-### 3. Rollback Strategy
-```bash
-# Rollback to previous deployment
-vercel rollback [deployment-url]
-
-# Promote specific deployment
-vercel promote [deployment-url]
-```
-
-## 📞 Support Resources
-
-### 1. Documentation
-- [Vercel Documentation](https://vercel.com/docs)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [PostgreSQL Documentation](https://postgresql.org/docs)
-
-### 2. Community Support
-- Vercel Discord
-- Next.js GitHub Discussions
-- Stack Overflow
-
-### 3. Professional Support
-- Vercel Pro Plan support
-- Enterprise support options
-
-## ✅ Deployment Checklist
-
-- [ ] Repository connected to Vercel
-- [ ] Environment variables configured
-- [ ] Database migrated to PostgreSQL
-- [ ] Domain configured (optional)
-- [ ] SSL certificate active
-- [ ] API endpoints tested
-- [ ] Authentication working
-- [ ] Payment system functional
-- [ ] Email notifications working
-- [ ] Performance optimized
-- [ ] Monitoring enabled
-- [ ] Backup strategy implemented
-- [ ] Team access configured
-- [ ] Documentation updated
-
-## 🎉 Success Metrics
-
-After deployment, monitor these metrics:
-- **Uptime**: 99.9% target
-- **Response Time**: <200ms API responses
-- **Core Web Vitals**: All green scores
-- **Error Rate**: <1% of requests
-- **User Satisfaction**: Monitor support tickets
-
-Your NutriConnect platform is now live on Vercel! 🚀
+Your DietInt application is now ready for production! 🎉
