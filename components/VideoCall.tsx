@@ -126,11 +126,11 @@ const VideoCall: React.FC<VideoCallProps> = ({
       setConnectionQuality(event.quality);
     });
 
-    frame.on('screen-share-started', () => {
+    frame.on('screen-share-started' as any, () => {
       setIsScreenSharing(true);
     });
 
-    frame.on('screen-share-stopped', () => {
+    frame.on('screen-share-stopped' as any, () => {
       setIsScreenSharing(false);
     });
 

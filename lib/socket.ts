@@ -41,6 +41,10 @@ export interface ConsultationRoom {
   messages: MessageData[];
 }
 
+// In-memory storage for consultation rooms and active users
+const consultationRooms = new Map<string, ConsultationRoom>();
+const activeUsers = new Map<string, UserData>();
+
 // Socket.io server configuration
 export const configureSocketIO = (server: NetServer) => {
   const io = new SocketIOServer(server, {

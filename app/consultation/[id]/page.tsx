@@ -49,7 +49,7 @@ const mockConsultationData = {
 
 const ConsultationPage: React.FC = () => {
   const params = useParams();
-  const consultationId = params.id as string;
+  const consultationId = params?.id as string;
   
   const [loading, setLoading] = useState(true);
   const [consultationData, setConsultationData] = useState(mockConsultationData);
