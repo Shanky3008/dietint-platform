@@ -12,12 +12,12 @@ export const BRAND_CONFIG = {
     full: '🧠💬 DietInt'
   },
   
-  // Color Scheme (DietInt brand colors)
+  // Color Scheme (Health-focused DietInt brand colors)
   colors: {
-    primary: '#2E8B57',      // Sea green (intelligence)
-    secondary: '#32CD32',    // Lime green (interaction)
-    accent: '#FFD700',       // Gold accent
-    dark: '#1B5E20',         // Dark green
+    primary: '#2E7D32',      // Deep green for health/trust
+    secondary: '#FF9800',    // Warm orange for energy
+    accent: '#03A9F4',       // Light blue for credibility
+    dark: '#005005',         // Very dark green
     light: '#E8F5E8',        // Very light green
     text: {
       primary: '#2C3E50',    // Dark blue-gray

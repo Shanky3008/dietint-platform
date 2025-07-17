@@ -37,7 +37,7 @@ export default function AboutPage() {
     {
       icon: <Award sx={{ fontSize: 40, color: 'primary.main' }} />,
       title: 'Expert Experience',
-      description: '11+ years of professional nutrition experience across hospitals and healthcare organizations.'
+      description: '15+ years of professional nutrition experience across hospitals and healthcare organizations.'
     },
     {
       icon: <People sx={{ fontSize: 40, color: 'primary.main' }} />,
@@ -92,7 +92,7 @@ export default function AboutPage() {
                     GPM
                   </Avatar>
                   <Chip 
-                    label="11+ Years Experience" 
+                    label="15+ Years Experience" 
                     color="primary" 
                     sx={{ fontWeight: 'bold', mb: 1 }}
                   />
@@ -126,12 +126,12 @@ export default function AboutPage() {
                   MSc Nutrition | Professional Nutritionist & Health Coach
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom sx={{ fontStyle: 'italic', color: 'text.secondary' }}>
-                  11+ Years of Transforming Lives Through Sustainable Nutrition
+                  15+ Years of Transforming Lives Through Sustainable Nutrition
                 </Typography>
                 
                 <Box sx={{ mb: 4 }}>
                   <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
-                    I am an experienced nutrition professional with more than 11 years of experience in transforming the lifestyle of numerous individuals. Having been associated with multiple hospitals, fitness centers and successful health care technology start-ups, I have successfully built healthy proprietary diet plans customized based on individual's challenges.
+                    I am an experienced nutrition professional with more than 15 years of experience in transforming the lifestyle of numerous individuals. Having been associated with multiple hospitals, fitness centers and successful health care technology start-ups, I have successfully built healthy proprietary diet plans customized based on individual's challenges.
                   </Typography>
                   <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
                     I constantly write columns for newsprint media and several magazines and share my thoughts on healthy lifestyle in various television channels. To top this, I host programs on top Telugu channels where I recommend healthy recipes, bringing nutrition education to diverse communities.
@@ -214,7 +214,7 @@ export default function AboutPage() {
                 Our Location
               </Typography>
               <Typography variant="h6" color="text.secondary" sx={{ maxWidth: '800px', mx: 'auto' }}>
-                Visit us at our office in Mumbai for in-person consultations.
+                Visit us at our office in Hyderabad, India for in-person consultations.
               </Typography>
             </Box>
             

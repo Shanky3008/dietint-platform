@@ -150,7 +150,7 @@ export default function SummerSoakedPohaRecipePage() {
                     Gouri Priya Mylavarapu
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    MSc Nutrition | 11+ Years Experience
+                    MSc Nutrition | 15+ Years Experience
                   </Typography>
                 </Box>
               </Box>
@@ -331,7 +331,7 @@ export default function SummerSoakedPohaRecipePage() {
               
               <Box sx={{ mb: 4 }}>
                 <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
-                  This recipe embodies the principles of seasonal eating that I've advocated throughout my 11+ years of nutrition practice. Summer requires foods that cool the body, provide hydration, and are easy to digest when heat reduces appetite.
+                  This recipe embodies the principles of seasonal eating that I've advocated throughout my 15+ years of nutrition practice. Summer requires foods that cool the body, provide hydration, and are easy to digest when heat reduces appetite.
                 </Typography>
                 
                 <Box component="ul" sx={{ pl: 3, mb: 3 }}>
@@ -371,7 +371,7 @@ export default function SummerSoakedPohaRecipePage() {
                   • Perfect as a post-workout meal when combined with a protein source
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
-                  - Based on 11+ years of nutrition experience
+                  - Based on 15+ years of nutrition experience
                 </Typography>
               </Card>
               

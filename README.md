@@ -10,7 +10,7 @@
 
 ## 👩‍⚕️ About the Platform
 
-**DietInt** is a comprehensive nutrition and wellness platform created by **Gouri Priya Mylavarapu**, MSc Nutrition, with 11+ years of experience transforming lives through sustainable dietary practices. The platform embodies her proven **AT-HOME foods approach** - using everyday kitchen ingredients rather than expensive supplements or special diet products.
+**DietInt** is a comprehensive nutrition and wellness platform created by **Gouri Priya Mylavarapu**, MSc Nutrition, with 15+ years of experience transforming lives through sustainable dietary practices. The platform embodies her proven **AT-HOME foods approach** - using everyday kitchen ingredients rather than expensive supplements or special diet products.
 
 ### 🎯 **Our Mission**
 *"A lifestyle change is the key to lead a healthy life and your health coach (nutritionist) is the one who will guide you to reach the light of that tunnel."* - Gouri Priya Mylavarapu
@@ -43,7 +43,7 @@ Our signature methodology focuses on:
 ### 💼 **Professional Services**
 - **Individual Consultations**: 1-hour personalized sessions
 - **Corporate Wellness**: Group programs and speaking engagements
-- **Media Consultation**: Content creation based on 11+ years TV experience
+- **Media Consultation**: Content creation based on 15+ years TV experience
 - **Hospital Partnerships**: Clinical nutrition support
 - **Traditional Cuisine Adaptation**: Regional food customization
 
@@ -234,7 +234,7 @@ Gouri Priya Mylavarapu is an experienced nutrition professional with more than 1
 
 ### **Professional Background**
 - **Education**: MSc Nutrition from Shadan Institute of P.G. Studies
-- **Experience**: 11+ years in clinical and community nutrition
+- **Experience**: 15+ years in clinical and community nutrition
 - **Media Presence**: Regular columnist and Telugu TV show host
 - **Corporate Expertise**: Wellness programs and speaking engagements
 - **Specializations**: Weight management, PCOS, diabetes, traditional cuisine adaptation

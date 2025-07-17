@@ -72,7 +72,7 @@ export default function VirginCoconutOilBenefitsPage() {
                     Gouri Priya Mylavarapu
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    MSc Nutrition | 11+ Years Experience
+                    MSc Nutrition | 15+ Years Experience
                   </Typography>
                 </Box>
               </Box>
@@ -213,7 +213,7 @@ export default function VirginCoconutOilBenefitsPage() {
                   lineHeight: 1.6,
                   mb: 2
                 }}>
-                  "In my 11+ years of nutrition practice, I've seen how simple ingredient swaps like using virgin coconut oil can make significant improvements in my clients' overall health. The key is choosing quality, traditionally extracted oils that retain their natural nutritional properties."
+                  "In my 15+ years of nutrition practice, I've seen how simple ingredient swaps like using virgin coconut oil can make significant improvements in my clients' overall health. The key is choosing quality, traditionally extracted oils that retain their natural nutritional properties."
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
                   - Gouri Priya Mylavarapu, MSc Nutrition

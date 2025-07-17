@@ -158,6 +158,32 @@ export default function HeroSection() {
               ))}
             </Grid>
             
+            {/* Professional Photo and Credentials */}
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+              <Avatar
+                src="/gouri-professional-photo.jpg" // Professional photo placeholder
+                alt="Gouri Priya Mylavarapu - Certified Nutritionist"
+                sx={{ 
+                  width: 80, 
+                  height: 80, 
+                  mr: 3,
+                  border: '3px solid',
+                  borderColor: 'primary.main'
+                }}
+              />
+              <Box>
+                <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
+                  Gouri Priya Mylavarapu
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+                  MSc Nutrition • 15+ Years Experience
+                </Typography>
+                <Typography variant="body2" color="primary.main" sx={{ fontWeight: 'bold' }}>
+                  Hyderabad, India
+                </Typography>
+              </Box>
+            </Box>
+
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box sx={{ display: 'flex', mr: 2 }}>
                 <Avatar sx={{ bgcolor: 'orange.400', width: 40, height: 40, fontSize: '0.875rem', mr: -1 }}>NK</Avatar>

@@ -74,7 +74,7 @@ export default function UnderstandingMilkDietPage() {
                     Gouri Priya Mylavarapu
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    MSc Nutrition | 11+ Years Experience
+                    MSc Nutrition | 15+ Years Experience
                   </Typography>
                 </Box>
               </Box>
@@ -122,7 +122,7 @@ export default function UnderstandingMilkDietPage() {
                 mb: 3,
                 fontWeight: 'medium'
               }}>
-                Milk is an all-rounder beverage used in different beverage preparations and in preparation of many recipes. As a nutrition professional with over 11 years of experience, I've seen how milk can be both beneficial and problematic depending on individual tolerance and quality choices.
+                Milk is an all-rounder beverage used in different beverage preparations and in preparation of many recipes. As a nutrition professional with over 15 years of experience, I've seen how milk can be both beneficial and problematic depending on individual tolerance and quality choices.
               </Typography>
               
               <Divider sx={{ my: 3 }} />

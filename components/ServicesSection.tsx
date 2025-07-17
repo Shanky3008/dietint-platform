@@ -31,7 +31,7 @@ export default function ServicesSection() {
     },
     {
       title: 'Media Nutrition Consultation',
-      description: 'Expert nutrition content creation for media, recipe development, and health program hosting based on 11+ years TV experience.',
+      description: 'Expert nutrition content creation for media, recipe development, and health program hosting based on 15+ years TV experience.',
       image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&auto=format&fit=crop',
       href: '/auth/register?service=media-consultation'
     },

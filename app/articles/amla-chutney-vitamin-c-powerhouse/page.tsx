@@ -152,7 +152,7 @@ export default function AmlaVitaminCPowerhousePage() {
                     Gouri Priya Mylavarapu
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    MSc Nutrition | 11+ Years Experience
+                    MSc Nutrition | 15+ Years Experience
                   </Typography>
                 </Box>
               </Box>
@@ -193,7 +193,7 @@ export default function AmlaVitaminCPowerhousePage() {
                 mb: 3,
                 fontWeight: 'medium'
               }}>
-                Amla chutney is vitamin C rich with antioxidant properties and immunity boosting benefits, making it an excellent addition to daily meals. In my 11+ years of nutrition practice, I've consistently recommended amla as one of the most powerful natural immunity builders available in Indian kitchens.
+                Amla chutney is vitamin C rich with antioxidant properties and immunity boosting benefits, making it an excellent addition to daily meals. In my 15+ years of nutrition practice, I've consistently recommended amla as one of the most powerful natural immunity builders available in Indian kitchens.
               </Typography>
               
               <Divider sx={{ my: 3 }} />
@@ -431,7 +431,7 @@ export default function AmlaVitaminCPowerhousePage() {
                   • Avoid metal containers for storage - use glass containers instead
                 </Typography>
                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
-                  - Based on 11+ years of clinical nutrition experience
+                  - Based on 15+ years of clinical nutrition experience
                 </Typography>
               </Card>
               

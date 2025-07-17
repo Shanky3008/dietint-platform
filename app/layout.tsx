@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { Providers } from '@/components/Providers';
 import PWAInstallPrompt from '@/components/PWAInstallPrompt';
+import ChatbotWidget from '@/components/ChatbotWidget';
 import { BRAND_CONFIG } from '@/lib/branding';
 import './globals.css';
 
@@ -14,14 +15,19 @@ const inter = Inter({ subsets: ['latin'] });
 const theme = createTheme({
   palette: {
     primary: {
-      main: BRAND_CONFIG.colors.primary,
-      light: BRAND_CONFIG.colors.secondary,
+      main: BRAND_CONFIG.colors.primary,     // Deep green for health/trust
+      light: '#60AD5E',
       dark: BRAND_CONFIG.colors.dark,
+      contrastText: '#ffffff'
     },
     secondary: {
-      main: BRAND_CONFIG.colors.accent,
+      main: BRAND_CONFIG.colors.secondary,   // Warm orange for energy
       light: '#FFB74D',
-      dark: '#F57C00',
+      dark: '#C66900'
+    },
+    background: {
+      default: '#fafafa',
+      paper: '#ffffff'
     },
     text: {
       primary: BRAND_CONFIG.colors.text.primary,
@@ -30,7 +36,44 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: BRAND_CONFIG.fonts.primary,
+    h1: {
+      fontFamily: '"Roboto Slab", serif',
+      fontWeight: 700,
+      fontSize: '3rem',
+      '@media (max-width:600px)': {
+        fontSize: '2rem'
+      }
+    },
+    h2: {
+      fontFamily: '"Roboto Slab", serif',
+      fontWeight: 600,
+      fontSize: '2.5rem'
+    },
+    body1: {
+      fontSize: '1.1rem',
+      lineHeight: 1.7
+    }
   },
+  spacing: 8, // 8px base unit
+  shape: {
+    borderRadius: 8
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          fontWeight: 600,
+          minHeight: 48 // Mobile touch target
+        }
+      }
+    },
+    MuiPaper: {
+      defaultProps: {
+        elevation: 3
+      }
+    }
+  }
 });
 
 export default function RootLayout({
@@ -137,6 +180,7 @@ export default function RootLayout({
             <Providers>
               {children}
               <PWAInstallPrompt />
+              <ChatbotWidget />
             </Providers>
           </ThemeProvider>
         </AppRouterCacheProvider>

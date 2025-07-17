@@ -101,7 +101,7 @@ const sampleUsers = [
   },
   {
     id: 3,
-    fullName: 'Dr. Priya Admin',
+    fullName: 'Gouri Priya Mylavarapu',
     email: 'admin@dietint.com',
     role: 'admin',
     status: 'active',

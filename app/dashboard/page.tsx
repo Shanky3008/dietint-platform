@@ -171,7 +171,7 @@ export default function EnhancedDashboardPage() {
           <Grid container spacing={2} sx={{ mb: 4 }}>
             <Grid item xs={12} md={6}>
               <Alert severity="info" icon={<Schedule />}>
-                You have an appointment with Dr. Priya tomorrow at 3:00 PM
+                You have an appointment with Gouri Priya Mylavarapu tomorrow at 3:00 PM
               </Alert>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -342,7 +342,7 @@ export default function EnhancedDashboardPage() {
                           </ListItemIcon>
                           <ListItemText 
                             primary="Follow-up Consultation"
-                            secondary="Tomorrow, 3:00 PM with Dr. Priya"
+                            secondary="Tomorrow, 3:00 PM with Gouri Priya Mylavarapu"
                           />
                           <Chip label="Confirmed" color="success" size="small" />
                         </ListItem>

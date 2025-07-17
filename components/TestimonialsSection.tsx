@@ -43,7 +43,7 @@ export default function TestimonialsSection() {
       content: 'Gouri\'s research-based concepts with day-to-day monitoring helped me understand my body signals. The sustainable approach means I haven\'t gained back the weight I lost. Her hospital experience really shows.',
       rating: 5,
       avatar: 'SG',
-      location: 'Mumbai'
+      location: 'Hyderabad, India'
     },
     {
       name: 'Priyanka Sharma',
