@@ -2,18 +2,18 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { getFoodByTherapeuticUse, getFoodBySeason, searchFoods, getFoodRecommendations, getSeasonalFoods } from '@/lib/indian-food-database';
 
-// DietInt Comprehensive Knowledge Base
-const DIETINT_KNOWLEDGE_BASE = `
-DIETINT COMPREHENSIVE KNOWLEDGE BASE - Gouri Priya Mylavarapu, MSc Nutrition, 15+ Years Experience
+// CoachPulse Comprehensive Knowledge Base
+const COACHPULSE_KNOWLEDGE_BASE = `
+COACHPULSE COMPREHENSIVE KNOWLEDGE BASE - Expert Nutrition Coaches, Professional Guidance
 
-ABOUT DIETINT & PROFESSIONAL PROFILE:
-- Platform: DietInt (Diet Intelligence • Diet Interaction)
-- Nutritionist: Gouri Priya Mylavarapu
+ABOUT COACHPULSE & PROFESSIONAL PROFILE:
+- Platform: CoachPulse (Diet Intelligence • Diet Interaction)
+- Platform: Professional nutrition coaching platform
 - Qualification: MSc Nutrition from Shadan Institute of P.G. Studies
 - Experience: 15+ years in clinical and community nutrition
 - Location: Greater Hyderabad Area, Telangana, India
 - Rating: 5.0/5 from 500+ satisfied clients
-- Philosophy: "A lifestyle change is the key to lead a healthy life and your health coach (nutritionist) is the one who will guide you to reach the light of that tunnel."
+- Philosophy: "A lifestyle change is the key to lead a healthy life and your health coach is the one who will guide you to reach the light of that tunnel."
 
 PROFESSIONAL BACKGROUND:
 - Hospital associations with multiple healthcare organizations
@@ -47,7 +47,7 @@ OFFICE HOURS:
 
 PLATFORM FEATURES:
 1. AI-Powered Intelligence (smart nutrition recommendations)
-2. Interactive Consultations (real-time dietitian support)
+2. Interactive Consultations (real-time coach support)
 3. Adaptive Learning (platform learns from progress)
 4. Smart Tracking (intelligent progress monitoring)
 
@@ -103,9 +103,9 @@ COOKING METHODS:
 - Slow cooking: Dal, curries (better nutrient retention)
 
 CONTACT INFORMATION:
-- Email: gouri@dietint.com
+- Email: ${process.env.SUPPORT_EMAIL || 'support@coachpulse.in'}
 - Phone: +91 99999 88888
-- Support: support@dietint.com
+- Support: ${process.env.SUPPORT_EMAIL || 'support@coachpulse.in'}
 - Location: Greater Hyderabad Area, Telangana, India
 
 HEALTH DISCLAIMERS:
@@ -117,7 +117,7 @@ HEALTH DISCLAIMERS:
 `;
 
 const SYSTEM_PROMPT = `
-You are an AI assistant representing Gouri Priya Mylavarapu, a certified nutritionist with MSc Nutrition and 15+ years of experience based in Hyderabad, India. 
+You are an AI assistant for CoachPulse, representing certified health and wellness coaches with extensive experience and professional qualifications. 
 
 Your role is to provide helpful nutritional guidance with a focus on Indian dietary practices and the AT-HOME foods approach. Always maintain a professional, caring, and knowledgeable tone.
 
@@ -186,28 +186,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const fullPrompt = `
 ${SYSTEM_PROMPT}
 
-DIETINT KNOWLEDGE BASE:
-${DIETINT_KNOWLEDGE_BASE}
+COACHPULSE KNOWLEDGE BASE:
+${COACHPULSE_KNOWLEDGE_BASE}
 
 SPECIFIC FOOD RECOMMENDATIONS:
 ${foodRecommendations}
 
 USER QUESTION: ${message}
 
-Please provide a helpful response as Gouri Priya Mylavarapu, focusing on Indian dietary practices and the AT-HOME foods approach. Include appropriate health disclaimers and use the specific food recommendations provided above when relevant.
+Please provide a helpful response as a professional health coach, focusing on evidence-based nutrition and wellness practices. Include appropriate health disclaimers and use the specific food recommendations provided above when relevant.
 `;
 
-    // Call Ollama API with Phi-3 model
-    const response = await axios.post('http://localhost:11434/api/generate', {
-      model: 'phi3:latest',
-      prompt: fullPrompt,
-      stream: false,
-      options: {
-        temperature: 0.7,
-        top_p: 0.9,
-        max_tokens: 1000
-      }
-    });
+    // Call AI service (Ollama or compatible) with env-driven config
+    const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
+    const AI_MODEL = process.env.AI_MODEL || 'phi3:latest';
+    const response = await axios.post(
+      `${OLLAMA_URL}/api/generate`,
+      {
+        model: AI_MODEL,
+        prompt: fullPrompt,
+        stream: false,
+        options: {
+          temperature: 0.7,
+          top_p: 0.9,
+          max_tokens: 1000,
+        },
+      },
+      { timeout: 15000 }
+    );
 
     const aiResponse = response.data.response;
 
@@ -215,13 +221,13 @@ Please provide a helpful response as Gouri Priya Mylavarapu, focusing on Indian 
     const signedResponse = `${aiResponse}
 
 ---
-*This guidance is provided by Gouri Priya Mylavarapu, MSc Nutrition, with 15+ years of experience in clinical nutrition. For personalized diet plans and medical conditions, please schedule a consultation.*
+*This guidance is provided by certified health and wellness coaches with extensive experience. For personalized coaching plans and medical conditions, please schedule a consultation.*
 
-📍 Based in Hyderabad, India | 🌿 AT-HOME Foods Approach Specialist`;
+🌿 Professional Health & Wellness Coaching`;
 
     res.status(200).json({ 
       response: signedResponse,
-      model: 'phi3:latest',
+      model: AI_MODEL,
       timestamp: new Date().toISOString()
     });
 
@@ -232,7 +238,7 @@ Please provide a helpful response as Gouri Priya Mylavarapu, focusing on Indian 
     const fallbackResponse = `
 Hello! I'm currently experiencing technical difficulties connecting to the AI service. 
 
-As Gouri Priya Mylavarapu, MSc Nutrition with 15+ years of experience, I'd love to help you with your nutrition questions. Please try again in a moment, or feel free to schedule a direct consultation for personalized guidance.
+As a certified health coach with extensive experience, I'd love to help you with your wellness questions. Please try again in a moment, or feel free to schedule a direct consultation for personalized guidance.
 
 For immediate assistance, consider these general Indian nutrition tips:
 - Include a variety of colorful vegetables in your meals
@@ -244,7 +250,7 @@ For immediate assistance, consider these general Indian nutrition tips:
 ---
 *Please consult with healthcare providers for specific medical conditions. This is general nutritional information, not medical advice.*
 
-📍 Based in Hyderabad, India | 🌿 AT-HOME Foods Approach Specialist`;
+🌿 Professional Health & Wellness Coaching`;
 
     res.status(200).json({ 
       response: fallbackResponse,

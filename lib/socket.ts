@@ -18,7 +18,7 @@ export interface MessageData {
   timestamp: Date;
   type: 'text' | 'image' | 'file';
   userId?: string;
-  nutritionistId?: string;
+  coachId?: string;
   consultationId?: string;
 }
 
@@ -26,7 +26,7 @@ export interface UserData {
   id: string;
   name: string;
   email: string;
-  role: 'client' | 'nutritionist' | 'admin';
+  role: 'client' | 'coach' | 'admin';
   isOnline: boolean;
   lastSeen?: Date;
 }
@@ -34,7 +34,7 @@ export interface UserData {
 export interface ConsultationRoom {
   id: string;
   clientId: string;
-  nutritionistId: string;
+  coachId: string;
   status: 'active' | 'ended' | 'scheduled';
   startTime: Date;
   endTime?: Date;
@@ -59,9 +59,7 @@ export const configureSocketIO = (server: NetServer) => {
     },
   });
 
-  // Store active users and consultations
-  const activeUsers = new Map<string, UserData>();
-  const consultationRooms = new Map<string, ConsultationRoom>();
+  // Use module-level maps to persist state across connections
 
   io.on('connection', (socket: Socket) => {
     console.log('User connected:', socket.id);
@@ -151,12 +149,12 @@ export const configureSocketIO = (server: NetServer) => {
       });
     });
 
-    // Handle nutritionist availability
-    socket.on('nutritionist_status', (data: { userId: string; available: boolean }) => {
+    // Handle coach availability
+    socket.on('coach_status', (data: { userId: string; available: boolean }) => {
       const user = activeUsers.get(socket.id);
-      if (user && user.role === 'nutritionist') {
-        socket.broadcast.emit('nutritionist_availability', {
-          nutritionistId: data.userId,
+      if (user && user.role === 'coach') {
+        socket.broadcast.emit('coach_availability', {
+          coachId: data.userId,
           available: data.available
         });
       }
@@ -209,7 +207,7 @@ export const configureSocketIO = (server: NetServer) => {
       message: string; 
       urgency: 'low' | 'medium' | 'high' 
     }) => {
-      // Notify available nutritionists
+      // Notify available coaches
       socket.broadcast.emit('quick_consultation_available', {
         clientId: data.clientId,
         message: data.message,
@@ -252,7 +250,7 @@ export const configureSocketIO = (server: NetServer) => {
 export const getOrCreateConsultationRoom = (
   consultationId: string,
   clientId: string,
-  nutritionistId: string
+  coachId: string
 ): ConsultationRoom => {
   const existingRoom = consultationRooms.get(consultationId);
   if (existingRoom) {
@@ -262,7 +260,7 @@ export const getOrCreateConsultationRoom = (
   const newRoom: ConsultationRoom = {
     id: consultationId,
     clientId,
-    nutritionistId,
+    coachId,
     status: 'active',
     startTime: new Date(),
     messages: []

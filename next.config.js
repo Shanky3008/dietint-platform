@@ -79,22 +79,14 @@ const nextConfig = {
     ];
   },
   
-  // Proxy API requests to backend
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:3000/api/:path*',
-      },
-    ];
-  },
+  // Note: Avoid proxying Next API routes to localhost to prevent loops/conflicts
   
   // Enable external access
   output: 'standalone',
   
   // Enhanced image optimization
   images: {
-    domains: ['localhost', 'cdn.dietint.com', 'images.unsplash.com'],
+    domains: ['localhost', 'cdn.coachpulse.com', 'images.unsplash.com'],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -104,7 +96,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.dietint.com',
+        hostname: '**.coachpulse.com',
       },
     ],
   },

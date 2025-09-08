@@ -66,6 +66,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
+    // Block disk uploads in production (use object storage in prod)
+    if (process.env.NODE_ENV === 'production') {
+      return res.status(501).json({
+        error: 'File uploads are disabled in production. Please configure object storage (e.g., S3) with signed URLs.'
+      });
+    }
+
     // Use multer middleware
     await new Promise<void>((resolve, reject) => {
       upload.single('file')(req as any, res as any, (err) => {
