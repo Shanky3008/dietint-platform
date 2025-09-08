@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDatabaseAdapter } from '@/lib/database';
+import { requireAuth } from '@/lib/security/auth';
 
 function generateCode(length = 6) {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -9,11 +10,13 @@ function generateCode(length = 6) {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const auth = requireAuth(req, res, ['COACH', 'ADMIN']);
+  if (!auth) return;
   const db = await getDatabaseAdapter();
 
   try {
     if (req.method === 'POST') {
-      const { coach_id, expires_at } = req.body || {};
+      const { coach_id = auth.userId, expires_at } = req.body || {};
       const code = generateCode(6);
       await db.run(
         `INSERT INTO invite_codes (code, coach_id, expires_at) VALUES (?, ?, ?)`,
@@ -39,4 +42,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 export const config = { api: { bodyParser: true } };
-

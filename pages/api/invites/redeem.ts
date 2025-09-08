@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDatabaseAdapter } from '@/lib/database';
+import { requireAuth } from '@/lib/security/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -7,8 +8,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const auth = requireAuth(req, res, ['CLIENT', 'COACH', 'ADMIN']);
+  if (!auth) return;
   const db = await getDatabaseAdapter();
-  const { code, user_id } = req.body || {};
+  const { code, user_id = auth.userId } = req.body || {};
 
   if (!code || !user_id) {
     return res.status(400).json({ error: 'code and user_id are required' });
@@ -38,4 +41,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 export const config = { api: { bodyParser: true } };
-
