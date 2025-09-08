@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { Container, Box, Typography, Grid, Card, CardContent, Chip, LinearProgress, List, ListItem, ListItemText, Button } from '@mui/material';
+import { Container, Box, Typography, Grid, Card, CardContent, Chip, LinearProgress, List, ListItem, ListItemText, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Snackbar, Alert } from '@mui/material';
 import { RootState } from '@/lib/store';
 import Navbar from '@/components/Navbar';
 
@@ -21,6 +21,12 @@ export default function CoachDashboardPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [clients, setClients] = useState<RiskClient[]>([]);
+  const [nudgeOpen, setNudgeOpen] = useState(false);
+  const [assignOpen, setAssignOpen] = useState(false);
+  const [activeClient, setActiveClient] = useState<RiskClient | null>(null);
+  const [nudgeText, setNudgeText] = useState('Hi! Quick check-in – how is your plan going today?');
+  const [planId, setPlanId] = useState('');
+  const [toast, setToast] = useState<{open: boolean; message: string; severity: 'success'|'error'}>({open:false,message:'',severity:'success'});
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -94,7 +100,14 @@ export default function CoachDashboardPage() {
                   <Typography variant="body2" color="text.secondary">No red-risk clients right now.</Typography>
                 )}
                 {topAtRisk.map((c) => (
-                  <ListItem key={c.client_id} secondaryAction={<Chip color="error" label="Red" size="small" /> }>
+                  <ListItem key={c.client_id} 
+                    secondaryAction={
+                      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                        <Chip color="error" label="Red" size="small" />
+                        <Button size="small" variant="outlined" onClick={() => { setActiveClient(c); setNudgeOpen(true); }}>Nudge</Button>
+                        <Button size="small" variant="text" onClick={() => { setActiveClient(c); setAssignOpen(true); }}>Assign Plan</Button>
+                      </Box>
+                    }>
                     <ListItemText 
                       primary={c.name}
                       secondary={c.last_activity ? `Last activity: ${new Date(c.last_activity).toLocaleString()}` : 'No activity yet'}
@@ -106,7 +119,61 @@ export default function CoachDashboardPage() {
           </Card>
         </Box>
       </Container>
+
+      {/* Nudge Dialog */}
+      <Dialog open={nudgeOpen} onClose={() => setNudgeOpen(false)}>
+        <DialogTitle>Send Nudge {activeClient ? `to ${activeClient.name}` : ''}</DialogTitle>
+        <DialogContent>
+          <TextField fullWidth multiline minRows={3} value={nudgeText} onChange={(e)=>setNudgeText(e.target.value)} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>setNudgeOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={async ()=>{
+            try {
+              const token = localStorage.getItem('token');
+              const res = await fetch('/api/whatsapp/nudge', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ client_id: activeClient?.client_id, text: nudgeText })
+              });
+              if (!res.ok) throw new Error('Failed');
+              setToast({open:true,message:'Nudge sent',severity:'success'});
+              setNudgeOpen(false);
+            } catch { setToast({open:true,message:'Failed to send nudge',severity:'error'}); }
+          }}>Send</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Assign Plan Dialog */}
+      <Dialog open={assignOpen} onClose={() => setAssignOpen(false)}>
+        <DialogTitle>Assign Plan {activeClient ? `to ${activeClient.name}` : ''}</DialogTitle>
+        <DialogContent>
+          <TextField fullWidth label="Plan ID" value={planId} onChange={(e)=>setPlanId(e.target.value)} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>setAssignOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={async ()=>{
+            try {
+              const token = localStorage.getItem('token');
+              const res = await fetch('/api/plans/assign', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ client_id: activeClient?.client_id, plan_id: Number(planId) })
+              });
+              if (!res.ok) throw new Error('Failed');
+              setToast({open:true,message:'Plan assigned',severity:'success'});
+              setAssignOpen(false);
+              setPlanId('');
+            } catch { setToast({open:true,message:'Failed to assign plan',severity:'error'}); }
+          }}>Assign</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Snackbar open={toast.open} autoHideDuration={3000} onClose={()=>setToast({...toast, open:false})}>
+        <Alert onClose={()=>setToast({...toast, open:false})} severity={toast.severity} sx={{ width: '100%' }}>
+          {toast.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
-
