@@ -1,4 +1,4 @@
-# 🧠💬 DietInt by Gouri Priya Mylavarapu
+# 🎯 CoachPulse - Professional Coaching Platform
 
 > **Professional Nutrition Platform with AT-HOME Foods Approach**  
 > *Transforming Lives Through Sustainable Nutrition & Traditional Wisdom*
@@ -8,12 +8,12 @@
 [![Material-UI](https://img.shields.io/badge/Material--UI-5.15.0-007FFF)](https://mui.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## 👩‍⚕️ About the Platform
+## 💪 About the Platform
 
-**DietInt** is a comprehensive nutrition and wellness platform created by **Gouri Priya Mylavarapu**, MSc Nutrition, with 15+ years of experience transforming lives through sustainable dietary practices. The platform embodies her proven **AT-HOME foods approach** - using everyday kitchen ingredients rather than expensive supplements or special diet products.
+**CoachPulse** is a B2B2C platform for health and wellness coaches. It helps coaches scale their practice with smart alerts, automated nudges, and a white‑label client experience. Pricing starts at ₹200 per active client per month. The platform embodies our **AT‑HOME foods approach** — using everyday ingredients with culturally relevant guidance.
 
 ### 🎯 **Our Mission**
-*"A lifestyle change is the key to lead a healthy life and your health coach (nutritionist) is the one who will guide you to reach the light of that tunnel."* - Gouri Priya Mylavarapu
+*"Feel the pulse of every client's journey toward optimal health and wellness."*
 
 ## 🏠 **The AT-HOME Foods Approach**
 
@@ -30,7 +30,7 @@ Our signature methodology focuses on:
 
 ### 🔐 **User Management**
 - Secure authentication with NextAuth
-- Role-based access (Client, Dietitian, Admin)
+- Role-based access (CLIENT, COACH, Admin)
 - Comprehensive user profiles
 - Progress tracking and analytics
 
@@ -40,12 +40,11 @@ Our signature methodology focuses on:
 - Seasonal eating guides
 - Expert tips and research insights
 
-### 💼 **Professional Services**
-- **Individual Consultations**: 1-hour personalized sessions
-- **Corporate Wellness**: Group programs and speaking engagements
-- **Media Consultation**: Content creation based on 15+ years TV experience
-- **Hospital Partnerships**: Clinical nutrition support
-- **Traditional Cuisine Adaptation**: Regional food customization
+### 💼 **For Coaches**
+- Smart client alerts and ghost prevention
+- Personalized nudges at scale
+- White‑label mobile + web
+- Plan assignment, messaging, and light CRM
 
 ### 📱 **Modern Features**
 - Progressive Web App (PWA) capabilities
@@ -55,10 +54,9 @@ Our signature methodology focuses on:
 - Email and WhatsApp communication
 
 ### 📊 **Analytics & Tracking**
-- Client progress monitoring
-- Nutrition goal tracking
-- Success metrics dashboard
-- Performance analytics
+- Client status triage (Green/Yellow/Red)
+- Compliance and engagement insights
+- Revenue impact and retention trends
 
 ## 🛠️ **Tech Stack**
 
@@ -71,11 +69,10 @@ Our signature methodology focuses on:
 - **Forms**: [React Hook Form 7.53.0](https://react-hook-form.com/) - Performant forms
 
 ### **Backend & APIs**
-- **Runtime**: [Node.js](https://nodejs.org/) - JavaScript runtime
-- **API Routes**: Next.js API routes for serverless functions
-- **Authentication**: [NextAuth.js](https://next-auth.js.org/) - Authentication library
-- **Database**: [SQLite 5.1.7](https://www.sqlite.org/) - Lightweight database
-- **Validation**: [Zod 3.25.51](https://zod.dev/) - TypeScript-first schema validation
+- **API Routes**: Next.js API routes
+- **Auth**: JWT with role-based access (CLIENT, COACH, ADMIN)
+- **Database**: Postgres in production; SQLite for local dev
+- **Uploads**: Cloudinary signed uploads (S3/Vercel Blob optional)
 
 ### **Additional Libraries**
 - **HTTP Client**: [Axios 1.6.0](https://axios-http.com/) - Promise-based HTTP client
@@ -137,20 +134,19 @@ JWT_SECRET=your-jwt-secret-here
 # Email Configuration
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your-email@dietint.com
+EMAIL_USER=your-email@coachpulse.in
 EMAIL_PASS=your-app-password
 
 # WhatsApp Integration (Optional)
-WHATSAPP_API_KEY=your-whatsapp-api-key
+WHATSAPP_ACCESS_TOKEN=your-whatsapp-access-token
+WHATSAPP_PHONE_NUMBER_ID=your-whatsapp-number-id
 
 # Admin Configuration
-ADMIN_EMAIL=gouri@dietint.com
+ADMIN_EMAIL=admin@coachpulse.in
 ADMIN_PASSWORD=secure-admin-password
 
-# Payment Integration (Production)
-STRIPE_SECRET_KEY=your-stripe-secret-key
-STRIPE_PUBLISHABLE_KEY=your-stripe-publishable-key
-STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
+# Payments (optional)
+# Coming soon; keep placeholders if needed
 ```
 
 ### **Available Scripts**
@@ -178,7 +174,7 @@ npm run test         # Run test suite (when implemented)
 ```
 nutriconnect-platform/
 ├── app/                          # Next.js 13+ App Router
-│   ├── about/                    # About page with Gouri Priya's bio
+│   ├── about/                    # About page with professional coach info
 │   ├── admin/                    # Admin dashboard
 │   ├── articles/                 # Blog articles & recipes
 │   │   ├── virgin-coconut-oil-benefits/
@@ -226,11 +222,11 @@ nutriconnect-platform/
 └── vercel.json                   # Vercel deployment config
 ```
 
-## 👩‍⚕️ **About Gouri Priya Mylavarapu**
+## 👨‍⚕️ **About Our Coaches**
 
-**MSc Nutrition | 11+ Years Experience | EtvLife Nutritionist**
+**Professional Health & Wellness Coaches | Extensive Experience**
 
-Gouri Priya Mylavarapu is an experienced nutrition professional with more than 11 years of experience transforming the lifestyle of numerous individuals. Having been associated with multiple hospitals, fitness centers, and successful healthcare technology startups, she has successfully built healthy proprietary diet plans customized based on individual challenges.
+CoachPulse connects you with experienced health and wellness professionals who have years of experience transforming the lifestyle of numerous individuals. Our coaches have been associated with multiple hospitals, fitness centers, and successful healthcare technology startups, successfully building healthy proprietary coaching plans customized based on individual challenges.
 
 ### **Professional Background**
 - **Education**: MSc Nutrition from Shadan Institute of P.G. Studies
@@ -240,7 +236,7 @@ Gouri Priya Mylavarapu is an experienced nutrition professional with more than 1
 - **Specializations**: Weight management, PCOS, diabetes, traditional cuisine adaptation
 
 ### **Philosophy**
-*"I will eventually become your guide, who will constantly motivate and let you be the driver of your car and reach your destination."*
+*"We will become your guide, constantly motivating you and helping you be the driver of your wellness journey to reach your destination."*
 
 ## 🔧 **Features in Detail**
 
@@ -364,14 +360,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 **Support**
 
-- **📧 Email**: gouri@dietint.com
+- **📧 Email**: hello@coachpulse.in
 - **📱 Phone**: +91 99999 88888
 - **📍 Location**: Greater Hyderabad Area, Telangana, India
 - **🕐 Hours**: Monday-Friday 10:00 AM - 7:00 PM IST
 
 ## 🙏 **Acknowledgments**
 
-- **Gouri Priya Mylavarapu** - Founder and Nutrition Expert
+- **CoachPulse Team** - Professional Health & Wellness Coaches
 - **EtvLife** - Media partnership and platform support
 - **Shadan Institute** - Educational foundation
 - **Healthcare Partners** - Clinical collaboration
