@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { requireAuth } from '@/lib/security/auth';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
@@ -66,6 +67,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
+    // Require authentication
+    const auth = requireAuth(req, res, ['CLIENT', 'COACH', 'ADMIN']);
+    if (!auth) return;
+
     // Block disk uploads in production (use object storage in prod)
     if (process.env.NODE_ENV === 'production') {
       return res.status(501).json({
