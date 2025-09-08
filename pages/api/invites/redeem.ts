@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDatabaseAdapter } from '@/lib/database';
 import { requireAuth } from '@/lib/security/auth';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const WhatsAppService = require('@/lib/whatsapp/whatsappService.js');
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -31,6 +33,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Link client to coach (if present)
     if (invite.coach_id) {
       await db.run(`UPDATE users SET coach_id = ? WHERE id = ?`, [invite.coach_id, user_id]);
+    }
+
+    // Send welcome message via WhatsApp if configured
+    try {
+      const user = await db.get(`SELECT fullName, phone FROM users WHERE id = ?`, [user_id]);
+      if (user?.phone) {
+        const wa = new WhatsAppService();
+        await wa.sendWelcomeMessage(user.phone, user.fullName || 'there');
+      }
+    } catch (waErr) {
+      console.log('WhatsApp welcome skipped:', (waErr as Error).message);
     }
 
     return res.status(200).json({ success: true, coach_id: invite.coach_id || null });
