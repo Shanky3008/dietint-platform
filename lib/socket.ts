@@ -52,7 +52,7 @@ export const configureSocketIO = (server: NetServer) => {
     addTrailingSlash: false,
     cors: {
       origin: process.env.NODE_ENV === 'production' 
-        ? ['https://dietint.com', 'https://www.dietint.com']
+        ? ['https://coachpulse.in', 'https://www.coachpulse.in']
         : ['http://localhost:3000', 'http://localhost:3002'],
       methods: ['GET', 'POST'],
       credentials: true,
