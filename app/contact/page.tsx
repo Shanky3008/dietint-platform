@@ -64,21 +64,21 @@ export default function ContactPage() {
   const contactInfo = [
     {
       icon: <Phone sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: 'Phone',
-      details: '+91 99999 88888',
-      subtitle: 'Mon-Fri 10AM-7PM IST'
+      title: 'Coach Support Hotline',
+      details: process.env.NEXT_PUBLIC_SUPPORT_PHONE || '+91-XXXXXXXXXX',
+      subtitle: 'Mon-Fri 9AM-9PM IST'
     },
     {
       icon: <Email sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: 'Email',
-      details: 'gouri@dietint.com',
-      subtitle: 'We reply within 24 hours'
+      title: 'Coach Support Email',
+      details: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'coaches@coachpulse.in',
+      subtitle: 'Response within 4 hours'
     },
     {
       icon: <LocationOn sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: 'Office',
-      details: 'Greater Hyderabad Area',
-      subtitle: 'In-person & online consultations'
+      title: 'Platform Access',
+      details: 'Cloud-Based Platform',
+      subtitle: 'Available 24/7 from anywhere'
     }
   ];
 
@@ -95,10 +95,10 @@ export default function ContactPage() {
           <Container maxWidth="lg">
             <Box sx={{ textAlign: 'center', mb: 6 }}>
               <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
-                Get in Touch
+                Coach Support Center
               </Typography>
               <Typography variant="h6" color="text.secondary" sx={{ maxWidth: '800px', mx: 'auto' }}>
-                Have questions about nutrition? Ready to start your health journey? We're here to help!
+                Need help with your coaching practice? Questions about the platform? Our team is here to support your success.
               </Typography>
             </Box>
           </Container>
@@ -146,7 +146,7 @@ export default function ContactPage() {
                 <Card>
                   <CardContent sx={{ p: 4 }}>
                     <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
-                      Send us a Message
+                      Get Coach Support
                     </Typography>
                     
                     <Box component="form" onSubmit={handleSubmit}>
@@ -184,22 +184,34 @@ export default function ContactPage() {
                         <Grid item xs={12} sm={6}>
                           <TextField
                             fullWidth
-                            label="Subject"
+                            label="Support Category"
                             name="subject"
                             value={formData.subject}
                             onChange={handleInputChange}
+                            select
+                            SelectProps={{ native: true }}
                             required
-                          />
+                          >
+                            <option value="">Select a category...</option>
+                            <option value="platform-help">Platform Help & Training</option>
+                            <option value="billing">Billing & Subscription</option>
+                            <option value="client-issues">Client Management Issues</option>
+                            <option value="white-label">White-Label Branding</option>
+                            <option value="technical">Technical Issues</option>
+                            <option value="feature-request">Feature Requests</option>
+                            <option value="general">General Inquiry</option>
+                          </TextField>
                         </Grid>
                         <Grid item xs={12}>
                           <TextField
                             fullWidth
-                            label="Message"
+                            label="How can we help your coaching practice?"
                             name="message"
                             multiline
                             rows={6}
                             value={formData.message}
                             onChange={handleInputChange}
+                            placeholder="Describe your question or issue. Include details about your current setup and what you're trying to achieve..."
                             required
                           />
                         </Grid>
@@ -236,10 +248,10 @@ export default function ContactPage() {
                     <CardContent sx={{ textAlign: 'center', p: 3 }}>
                       <Schedule sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
                       <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                        Book Consultation
+                        Schedule Onboarding
                       </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        Ready to start? Book a consultation with our nutrition expert.
+                        New coach? Book a free onboarding session to get started.
                       </Typography>
                       <Button
                         variant="contained"
@@ -247,7 +259,7 @@ export default function ContactPage() {
                         href="/auth/register"
                         sx={{ textTransform: 'none' }}
                       >
-                        Book Now
+                        Book Onboarding
                       </Button>
                     </CardContent>
                   </Card>
@@ -256,18 +268,18 @@ export default function ContactPage() {
                     <CardContent sx={{ textAlign: 'center', p: 3 }}>
                       <Chat sx={{ fontSize: 48, color: 'secondary.main', mb: 2 }} />
                       <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                        FAQ
+                        Coach Knowledge Base
                       </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        Find answers to commonly asked questions.
+                        Find guides, tutorials, and coaching best practices.
                       </Typography>
                       <Button
                         variant="outlined"
                         fullWidth
-                        href="/faq"
+                        href="/knowledge-base"
                         sx={{ textTransform: 'none' }}
                       >
-                        View FAQ
+                        View Resources
                       </Button>
                     </CardContent>
                   </Card>
@@ -276,20 +288,25 @@ export default function ContactPage() {
                   <Card>
                     <CardContent sx={{ p: 3 }}>
                       <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                        Office Hours
+                        Support Hours
                       </Typography>
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                           <Typography variant="body2">Monday - Friday</Typography>
-                          <Typography variant="body2">10:00 AM - 7:00 PM</Typography>
+                          <Typography variant="body2">9:00 AM - 9:00 PM IST</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                           <Typography variant="body2">Saturday</Typography>
-                          <Typography variant="body2">10:00 AM - 5:00 PM</Typography>
+                          <Typography variant="body2">10:00 AM - 6:00 PM IST</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                           <Typography variant="body2">Sunday</Typography>
-                          <Typography variant="body2" color="text.secondary">Online Only</Typography>
+                          <Typography variant="body2" color="text.secondary">Emergency Only</Typography>
+                        </Box>
+                        <Box sx={{ mt: 2, p: 2, bgcolor: 'primary.50', borderRadius: 1 }}>
+                          <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                            Priority Support for Pro Coaches
+                          </Typography>
                         </Box>
                       </Box>
                     </CardContent>
@@ -311,7 +328,7 @@ export default function ContactPage() {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert onClose={() => setShowSuccess(false)} severity="success" sx={{ width: '100%' }}>
-          Thank you! Your message has been sent successfully. We'll get back to you soon.
+          Thank you! Your support request has been received. Our coach success team will respond within 4 hours.
         </Alert>
       </Snackbar>
     </Box>
