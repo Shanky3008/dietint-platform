@@ -26,6 +26,7 @@ export default function CoachDashboardPage() {
   const [activeClient, setActiveClient] = useState<RiskClient | null>(null);
   const [nudgeText, setNudgeText] = useState('Hi! Quick check-in – how is your plan going today?');
   const [planId, setPlanId] = useState('');
+  const [plans, setPlans] = useState<Array<{id:number; title:string}>>([]);
   const [toast, setToast] = useState<{open: boolean; message: string; severity: 'success'|'error'}>({open:false,message:'',severity:'success'});
   const [alerts, setAlerts] = useState<Array<{type:string;priority:'low'|'medium'|'high';client_id:number;client_name:string;message:string}>>([]);
 
@@ -50,6 +51,10 @@ export default function CoachDashboardPage() {
       const ares = await fetch('/api/intelligence/alerts', { headers: token ? { Authorization: `Bearer ${token}` } : undefined });
       const adata = await ares.json();
       setAlerts(adata.alerts || []);
+      // Fetch coach plans for picker
+      const pres = await fetch('/api/plans/list', { headers: token ? { Authorization: `Bearer ${token}` } : undefined });
+      const pdata = await pres.json();
+      setPlans((pdata.plans || []).map((p:any)=>({ id: p.id, title: p.title })));
     } finally {
       setLoading(false);
     }
@@ -182,7 +187,12 @@ export default function CoachDashboardPage() {
       <Dialog open={assignOpen} onClose={() => setAssignOpen(false)}>
         <DialogTitle>Assign Plan {activeClient ? `to ${activeClient.name}` : ''}</DialogTitle>
         <DialogContent>
-          <TextField fullWidth label="Plan ID" value={planId} onChange={(e)=>setPlanId(e.target.value)} />
+          <TextField fullWidth select label="Select Plan" SelectProps={{ native: true }} value={planId} onChange={(e)=>setPlanId(e.target.value)}>
+            <option value="">Select a plan...</option>
+            {plans.map(p => (
+              <option key={p.id} value={p.id}>{p.title}</option>
+            ))}
+          </TextField>
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>setAssignOpen(false)}>Cancel</Button>

@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDatabaseAdapter } from '@/lib/database';
 import { requireAuth } from '@/lib/security/auth';
+import { simpleRateLimit } from '@/lib/security/rateLimit';
 
 function generateCode(length = 6) {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -16,6 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     if (req.method === 'POST') {
+      if (!simpleRateLimit(req, res, 'invites:create', { windowMs: 60 * 60 * 1000, max: 20 })) return;
       const { coach_id = auth.userId, expires_at } = req.body || {};
       const code = generateCode(6);
       await db.run(

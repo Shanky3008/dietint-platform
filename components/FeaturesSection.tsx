@@ -54,23 +54,23 @@ const iconMap: { [key: string]: JSX.Element } = {
 const defaultFeatures = [
   {
     icon: <RestaurantMenu sx={{ fontSize: 40, color: 'primary.main' }} />,
-    title: 'Expert Dietitians',
-    description: 'Certified nutrition professionals with years of experience'
+    title: 'Smart Alerts',
+    description: 'Know instantly when clients need attention with intelligent notifications'
   },
   {
     icon: <VideoCall sx={{ fontSize: 40, color: 'secondary.main' }} />,
-    title: 'Personalized Plans',
-    description: 'Custom diet plans tailored to your goals and preferences'
+    title: 'Ghost Prevention',
+    description: 'Identify at-risk clients before they disappear and save revenue'
   },
   {
     icon: <TrendingUp sx={{ fontSize: 40, color: 'success.main' }} />,
-    title: 'Easy Tracking',
-    description: 'Monitor your progress with our intuitive tracking tools'
+    title: 'Auto Nudges',
+    description: 'Automated reminders that feel personal to keep clients engaged'
   },
   {
     icon: <Security sx={{ fontSize: 40, color: 'info.main' }} />,
-    title: 'Goal Achievement',
-    description: 'Reach your health goals with expert guidance and support'
+    title: 'White-Label Branding',
+    description: 'Clients see your brand, not ours - professional image guaranteed'
   }
 ];
 
@@ -118,10 +118,10 @@ export default function FeaturesSection() {
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography variant="h3" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'text.primary' }}>
-            {content.features?.title?.value || `Why Choose ${content.branding?.app_name?.value || 'DietInt'}?`}
+            {content.features?.title?.value || `Built for Coaches`}
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
-            {content.features?.subtitle?.value || 'Everything you need for your nutrition journey'}
+            {content.features?.subtitle?.value || 'Intelligent tools that help you retain more clients, save time, and scale your practice.'}
           </Typography>
         </Box>
 

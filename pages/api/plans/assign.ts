@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDatabaseAdapter } from '@/lib/database';
 import { requireAuth } from '@/lib/security/auth';
+import { simpleRateLimit } from '@/lib/security/rateLimit';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const WhatsAppService = require('@/lib/whatsapp/whatsappService.js');
 
@@ -19,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    if (!simpleRateLimit(req, res, 'plans:assign', { windowMs: 10 * 60 * 1000, max: 60 })) return;
     const db = await getDatabaseAdapter();
     await db.run(
       `INSERT INTO client_plans (client_id, plan_id, assigned_by, status) VALUES (?, ?, ?, 'active')`,
