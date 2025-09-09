@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
 import { requireAuth } from '@/lib/security/auth';
+import { simpleRateLimit } from '@/lib/security/rateLimit';
 
 type Provider = 'cloudinary' | 's3';
 
@@ -15,6 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const provider = (process.env.UPLOADS_PROVIDER || 'local') as Provider | 'local';
   try {
+    if (!simpleRateLimit(req, res, 'uploads:sign', { windowMs: 10 * 60 * 1000, max: 60 })) return;
     if (provider === 'cloudinary') {
       const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
       const apiKey = process.env.CLOUDINARY_API_KEY;
@@ -61,4 +63,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 export const config = { api: { bodyParser: true } };
-
