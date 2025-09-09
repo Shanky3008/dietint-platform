@@ -104,9 +104,9 @@ COOKING METHODS:
 
 CONTACT INFORMATION:
 - Email: ${process.env.SUPPORT_EMAIL || 'support@coachpulse.in'}
-- Phone: +91 99999 88888
+- Phone: ${process.env.NEXT_PUBLIC_SUPPORT_PHONE || '+91-XXXXXXXXXX'}
 - Support: ${process.env.SUPPORT_EMAIL || 'support@coachpulse.in'}
-- Location: Greater Hyderabad Area, Telangana, India
+- Location: India
 
 HEALTH DISCLAIMERS:
 - This is general nutritional information, not medical advice

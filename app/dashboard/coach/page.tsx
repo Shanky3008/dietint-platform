@@ -27,6 +27,7 @@ export default function CoachDashboardPage() {
   const [nudgeText, setNudgeText] = useState('Hi! Quick check-in – how is your plan going today?');
   const [planId, setPlanId] = useState('');
   const [toast, setToast] = useState<{open: boolean; message: string; severity: 'success'|'error'}>({open:false,message:'',severity:'success'});
+  const [alerts, setAlerts] = useState<Array<{type:string;priority:'low'|'medium'|'high';client_id:number;client_name:string;message:string}>>([]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -45,6 +46,10 @@ export default function CoachDashboardPage() {
       });
       const data = await res.json();
       setClients(data.clients || []);
+      // Fetch alerts
+      const ares = await fetch('/api/intelligence/alerts', { headers: token ? { Authorization: `Bearer ${token}` } : undefined });
+      const adata = await ares.json();
+      setAlerts(adata.alerts || []);
     } finally {
       setLoading(false);
     }
@@ -93,7 +98,18 @@ export default function CoachDashboardPage() {
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Typography variant="h6" fontWeight={700}>Top At-Risk Clients</Typography>
-                <Button onClick={fetchRisk} size="small">Refresh</Button>
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                  <Button onClick={async ()=>{
+                    try {
+                      const token = localStorage.getItem('token');
+                      const res = await fetch('/api/intelligence/nudge-all-red', { method: 'POST', headers: token ? { Authorization: `Bearer ${token}` } : undefined });
+                      if (!res.ok) throw new Error('Failed');
+                      const d = await res.json();
+                      setToast({open:true,severity:'success',message:`Nudged ${d.sent} red clients`});
+                    } catch { setToast({open:true,severity:'error',message:'Failed to nudge all red'}); }
+                  }} size="small" variant="outlined">Nudge All Red</Button>
+                  <Button onClick={fetchRisk} size="small">Refresh</Button>
+                </Box>
               </Box>
               <List>
                 {topAtRisk.length === 0 && (
@@ -112,6 +128,24 @@ export default function CoachDashboardPage() {
                       primary={c.name}
                       secondary={c.last_activity ? `Last activity: ${new Date(c.last_activity).toLocaleString()}` : 'No activity yet'}
                     />
+                  </ListItem>
+                ))}
+              </List>
+            </CardContent>
+          </Card>
+        </Box>
+
+        <Box sx={{ mt: 4 }}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" fontWeight={700}>Suggested Actions</Typography>
+              <List>
+                {alerts.length === 0 && (
+                  <Typography variant="body2" color="text.secondary">No suggestions at the moment.</Typography>
+                )}
+                {alerts.map((a, i) => (
+                  <ListItem key={i} secondaryAction={<Chip size="small" label={a.priority.toUpperCase()} color={a.priority==='high'?'error':a.priority==='medium'?'warning':'default'} /> }>
+                    <ListItemText primary={a.message} secondary={a.type === 'nudge' ? 'Suggested: send a friendly nudge' : a.type} />
                   </ListItem>
                 ))}
               </List>

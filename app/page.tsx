@@ -232,6 +232,9 @@ export default function HomePage() {
                       {currentPlan.description}
                     </Typography>
                   )}
+                  <Box sx={{ mt: 1 }}>
+                    <Button size="small" variant="outlined" href="/dashboard/plan">View Plan</Button>
+                  </Box>
                 </CardContent>
               </Card>
             )}
