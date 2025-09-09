@@ -3,6 +3,7 @@ import { getDatabaseAdapter } from '@/lib/database';
 import { requireAuth } from '@/lib/security/auth';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const WhatsAppService = require('@/lib/whatsapp/whatsappService.js');
+import { simpleRateLimit } from '@/lib/security/rateLimit';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const auth = requireAuth(req, res, ['COACH', 'ADMIN']);
@@ -13,6 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  if (!simpleRateLimit(req, res, 'wa:broadcast', { windowMs: 60 * 60 * 1000, max: 6 })) return;
   const { text } = req.body || {};
   if (!text || typeof text !== 'string') {
     return res.status(400).json({ error: 'text is required' });
@@ -37,4 +39,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 export const config = { api: { bodyParser: true } };
-

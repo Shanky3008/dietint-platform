@@ -49,6 +49,17 @@ import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ServicesSection from '@/components/ServicesSection';
+import { Card, CardContent } from '@mui/material';
+
+type CurrentPlan = {
+  id: number;
+  title: string;
+  description?: string;
+  start_date?: string;
+  end_date?: string;
+  status?: string;
+  assigned_at?: string;
+} | null;
 
 export default function HomePage() {
   const [animateStats, setAnimateStats] = useState(false);
@@ -60,6 +71,7 @@ export default function HomePage() {
   });
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [currentPlan, setCurrentPlan] = useState<CurrentPlan>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -67,6 +79,22 @@ export default function HomePage() {
       animateNumbers();
     }, 1000);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Try to fetch current plan for logged-in users (best-effort)
+    const fetchPlan = async () => {
+      try {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+        if (!token) return;
+        const res = await fetch('/api/plans/current', { headers: { Authorization: `Bearer ${token}` } });
+        if (res.ok) {
+          const data = await res.json();
+          setCurrentPlan(data.plan || null);
+        }
+      } catch {}
+    };
+    fetchPlan();
   }, []);
 
   const animateNumbers = () => {
@@ -194,6 +222,19 @@ export default function HomePage() {
           borderBottom: '1px solid rgba(0,0,0,0.1)'
         }}>
           <Container maxWidth="lg">
+            {currentPlan && (
+              <Card sx={{ mb: 4 }}>
+                <CardContent>
+                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>Your Current Plan</Typography>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>{currentPlan.title}</Typography>
+                  {currentPlan.description && (
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                      {currentPlan.description}
+                    </Typography>
+                  )}
+                </CardContent>
+              </Card>
+            )}
             <Grid container spacing={4}>
               {[
                 { label: 'Active Coaches', value: animatedValues.coaches, suffix: '+', icon: <Groups />, color: '#4CAF50' },
