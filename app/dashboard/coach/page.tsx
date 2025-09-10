@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { Container, Box, Typography, Grid, Card, CardContent, Chip, LinearProgress, List, ListItem, ListItemText, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Snackbar, Alert } from '@mui/material';
+import { NUDGE_TEMPLATES } from '@/lib/intelligence/nudgeTemplates';
 import { RootState } from '@/lib/store';
 import Navbar from '@/components/Navbar';
 
@@ -164,12 +165,7 @@ export default function CoachDashboardPage() {
         <DialogTitle>Send Nudge {activeClient ? `to ${activeClient.name}` : ''}</DialogTitle>
         <DialogContent>
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 2 }}>
-            {[
-              'Hi! Quick check-in — how is your plan going today?',
-              'Great job so far! Remember to log your lunch today.',
-              'I’m here if you need help choosing meals today.',
-              'Let’s get back on track. You’ve got this! 💪'
-            ].map((tpl, i) => (
+            {NUDGE_TEMPLATES.map((tpl, i) => (
               <Button key={i} size="small" variant="outlined" onClick={()=>setNudgeText(tpl)}>Template {i+1}</Button>
             ))}
           </Box>

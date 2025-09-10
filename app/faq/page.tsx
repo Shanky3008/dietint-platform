@@ -16,32 +16,32 @@ const faqData: FAQItem[] = [
   {
     id: '1',
     category: 'Getting Started',
-    question: 'How do I create an account on DietInt?',
-    answer: 'Creating an account is simple! Click the "Get Started" button on our homepage, choose whether you\'re a client looking for nutrition guidance or a dietitian offering services, fill in your basic information, verify your email, and complete your profile. For dietitians, additional verification steps ensure professional credentials.',
-    tags: ['account', 'registration', 'setup']
+    question: 'How do I create an account on CoachPulse?',
+    answer: 'Coaches can sign up directly and set up their practice in minutes. Clients join only via an invite code from their coach — enter the code during registration to link your account to your coach automatically.',
+    tags: ['account', 'registration', 'setup', 'invite']
   },
   {
     id: '2',
     category: 'Getting Started',
     question: 'What information do I need to provide during registration?',
-    answer: 'Clients need basic contact information, health goals, and dietary preferences. Dietitians must provide professional credentials, licenses, education background, and areas of specialization. All users need to create a secure password and verify their email address.',
-    tags: ['registration', 'information', 'requirements']
+    answer: 'Clients: basic profile and an invite code from your coach. Coaches: basic profile, practice details, and optional credentials for verification. Everyone creates a secure password and verifies email.',
+    tags: ['registration', 'information', 'requirements', 'invite code']
   },
   {
     id: '3',
     category: 'Getting Started',
     question: 'Is my personal health information secure?',
-    answer: 'Absolutely! We use enterprise-grade encryption for all data transmission and storage. Our platform is HIPAA-compliant, ensuring your health information is protected according to medical privacy standards. We never share your personal data without your explicit consent.',
-    tags: ['security', 'privacy', 'HIPAA', 'data protection']
+    answer: 'We use industry-standard security practices and encrypted transport (HTTPS). Access-controlled data and least-privilege design protect your information. We do not share your data without consent.',
+    tags: ['security', 'privacy', 'data protection']
   },
   
   // For Clients
   {
     id: '4',
     category: 'For Clients',
-    question: 'How do I find and choose a dietitian?',
-    answer: 'Browse our verified dietitian profiles to see their specializations, experience, client reviews, and available appointment times. You can filter by expertise (weight loss, sports nutrition, medical conditions), location preferences, pricing, and languages spoken. Each dietitian\'s profile includes their background and approach to nutrition counseling.',
-    tags: ['dietitians', 'selection', 'profiles', 'specializations']
+    question: 'How do I find and choose a health coach?',
+    answer: 'Browse our verified health coach profiles to see their specializations, experience, client reviews, and available appointment times. You can filter by expertise (weight loss, sports nutrition, medical conditions), location preferences, pricing, and languages spoken. Each coach\'s profile includes their background and approach to nutrition counseling.',
+    tags: ['coaches', 'selection', 'profiles', 'specializations']
   },
   {
     id: '5',
@@ -54,56 +54,56 @@ const faqData: FAQItem[] = [
     id: '6',
     category: 'For Clients',
     question: 'How much do consultations cost?',
-    answer: 'Pricing varies by dietitian and session type. Initial consultations typically range from $75-150, follow-up sessions from $50-100, and quick check-ins from $25-50. Many dietitians offer package deals for multiple sessions. Payment is processed securely through our platform with various payment methods accepted.',
+    answer: 'Consultation pricing is set by each coach and varies by session type. Your coach will share their rates and any package options directly. Platform pricing for coaches starts at ₹200 per active client per month.',
     tags: ['pricing', 'cost', 'payment', 'packages']
   },
   {
     id: '7',
     category: 'For Clients',
     question: 'What happens during my first appointment?',
-    answer: 'Your initial consultation includes a comprehensive health assessment, discussion of your goals and challenges, review of your current eating habits, medical history review, and creation of a personalized nutrition plan. Your dietitian will also explain next steps and schedule follow-up appointments as needed.',
+    answer: 'Your initial consultation includes a comprehensive health assessment, discussion of your goals and challenges, review of your current eating habits, medical history review, and creation of a personalized nutrition plan. Your health coach will also explain next steps and schedule follow-up appointments as needed.',
     tags: ['first appointment', 'consultation', 'assessment', 'nutrition plan']
   },
   {
     id: '8',
     category: 'For Clients',
     question: 'How do I access my personalized diet plan?',
-    answer: 'Your custom diet plan is available in your dashboard immediately after your dietitian creates it. The plan includes daily meal suggestions, recipes, shopping lists, nutritional targets, and progress tracking tools. You can access it through our website or mobile app, even when offline.',
+    answer: 'Your custom diet plan is available in your dashboard immediately after your health coach creates it. The plan includes daily meal suggestions, recipes, shopping lists, nutritional targets, and progress tracking tools. You can access it through our website or mobile app, even when offline.',
     tags: ['diet plan', 'access', 'dashboard', 'mobile app']
   },
   {
     id: '9',
     category: 'For Clients',
     question: 'Can I modify my diet plan if I don\'t like certain foods?',
-    answer: 'Absolutely! Your diet plan is fully customizable. You can swap meals, exclude ingredients you dislike, account for allergies or dietary restrictions, and request alternatives. Your dietitian can also adjust the plan based on your feedback and preferences during follow-up sessions.',
+    answer: 'Absolutely! Your diet plan is fully customizable. You can swap meals, exclude ingredients you dislike, account for allergies or dietary restrictions, and request alternatives. Your health coach can also adjust the plan based on your feedback and preferences during follow-up sessions.',
     tags: ['customization', 'modifications', 'preferences', 'allergies']
   },
   
-  // For Dietitians
+  // For Health Coaches
   {
     id: '10',
-    category: 'For Dietitians',
-    question: 'What credentials do I need to become a verified dietitian?',
-    answer: 'You need a valid dietitian license or registration from your jurisdiction, professional liability insurance, relevant educational degrees, and current continuing education records. We verify all credentials before approving your professional profile.',
+    category: 'For Health Coaches',
+    question: 'What credentials do I need to become a verified health coach?',
+    answer: 'You need a valid health coach license or certification from your jurisdiction, professional liability insurance, relevant educational degrees, and current continuing education records. We verify all credentials before approving your professional profile.',
     tags: ['credentials', 'verification', 'requirements', 'professional']
   },
   {
     id: '11',
-    category: 'For Dietitians',
+    category: 'For Health Coaches',
     question: 'How do I set my availability and pricing?',
     answer: 'In your admin dashboard, go to Settings to configure your weekly schedule, time zones, appointment types, and pricing for each service. You can set different rates for different consultation types and create package deals. The system handles all booking and payment processing automatically.',
     tags: ['availability', 'pricing', 'schedule', 'settings']
   },
   {
     id: '12',
-    category: 'For Dietitians',
-    question: 'How do payments work for dietitians?',
+    category: 'For Health Coaches',
+    question: 'How do payments work for coaches?',
     answer: 'We handle all payment processing securely. Clients pay through our platform, and you receive payments (minus our service fee) via direct deposit or your preferred payment method. You\'ll receive detailed revenue reports and tax documentation for your records.',
     tags: ['payments', 'revenue', 'fees', 'tax documentation']
   },
   {
     id: '13',
-    category: 'For Dietitians',
+    category: 'For Health Coaches',
     question: 'What tools are available for creating diet plans?',
     answer: 'Our comprehensive diet plan builder includes a recipe database with nutritional analysis, customizable meal templates, automatic grocery list generation, macro and calorie calculators, and accommodation tools for dietary restrictions. You can create plans from scratch or modify existing templates.',
     tags: ['diet plans', 'tools', 'recipes', 'templates']
@@ -114,21 +114,21 @@ const faqData: FAQItem[] = [
     id: '14',
     category: 'Technical Support',
     question: 'Is there a mobile app available?',
-    answer: 'Yes! We offer both a native Android app (APK download) and a Progressive Web App (PWA) for iOS devices. The mobile app includes offline access to diet plans, quick meal logging, progress tracking, appointment notifications, and secure messaging with your dietitian.',
+    answer: 'Yes! We offer both a native Android app (APK download) and a Progressive Web App (PWA) for iOS devices. The mobile app includes offline access to diet plans, quick meal logging, progress tracking, appointment notifications, and secure messaging with your health coach.',
     tags: ['mobile app', 'Android', 'iOS', 'offline access']
   },
   {
     id: '15',
     category: 'Technical Support',
     question: 'How do I install the mobile app?',
-    answer: 'For Android: Download the APK file, enable installation from unknown sources in your security settings, and install. For iOS: Open dietint.com in Safari, tap the share button, and select "Add to Home Screen" to install the web app.',
+    answer: 'For Android: Download the APK file, enable installation from unknown sources in your security settings, and install. For iOS: Open coachpulse.com in Safari, tap the share button, and select "Add to Home Screen" to install the web app.',
     tags: ['installation', 'mobile app', 'Android APK', 'iOS PWA']
   },
   {
     id: '16',
     category: 'Technical Support',
     question: 'What browsers are supported?',
-    answer: 'DietInt works best on modern browsers including Chrome (recommended), Firefox, Safari, and Edge. We recommend keeping your browser updated for the best experience and security. The video calling feature requires camera and microphone permissions.',
+    answer: 'CoachPulse works best on modern browsers including Chrome (recommended), Firefox, Safari, and Edge. We recommend keeping your browser updated for the best experience and security. The video calling feature requires camera and microphone permissions.',
     tags: ['browsers', 'compatibility', 'requirements', 'video calls']
   },
   {
@@ -158,7 +158,7 @@ const faqData: FAQItem[] = [
     id: '20',
     category: 'Account Management',
     question: 'How do I delete my account?',
-    answer: 'To delete your account, go to Settings > Account > Delete Account. This action is permanent and will remove all your data. If you\'re a client with active appointments, please reschedule or cancel them first. For dietitians, ensure all client obligations are fulfilled.',
+    answer: 'To delete your account, go to Settings > Account > Delete Account. This action is permanent and will remove all your data. If you\'re a client with active appointments, please reschedule or cancel them first. For health coaches, ensure all client obligations are fulfilled.',
     tags: ['account deletion', 'data removal', 'permanent action']
   },
   {
@@ -188,7 +188,7 @@ const faqData: FAQItem[] = [
     id: '24',
     category: 'Billing and Payments',
     question: 'What is your cancellation and refund policy?',
-    answer: 'You can cancel appointments up to 24 hours in advance for a full refund. Cancellations within 24 hours may incur a fee, depending on your dietitian\'s policy. Emergency cancellations are handled case-by-case. Package deals have specific terms outlined at purchase.',
+    answer: 'You can cancel appointments up to 24 hours in advance for a full refund. Cancellations within 24 hours may incur a fee, depending on your coach\'s policy. Emergency cancellations are handled case-by-case. Package deals have specific terms outlined at purchase.',
     tags: ['cancellation', 'refund policy', '24 hour rule', 'emergency']
   },
   {
@@ -211,19 +211,19 @@ const faqData: FAQItem[] = [
     id: '27',
     category: 'Privacy and Security',
     question: 'Who can see my health information?',
-    answer: 'Only you and the dietitians you\'ve specifically chosen to work with can access your health information. Our platform administrators can only access technical data needed for system maintenance. We never share personal health data with third parties without your consent.',
+    answer: 'Only you and the health coaches you\'ve specifically chosen to work with can access your health information. Our platform administrators can only access technical data needed for system maintenance. We never share personal health data with third parties without your consent.',
     tags: ['access control', 'health information', 'privacy', 'consent']
   },
   {
     id: '28',
     category: 'Privacy and Security',
     question: 'Can I control what information is shared?',
-    answer: 'Yes! You have complete control over your information sharing. You can choose which dietitians to share information with, what specific data to include, and revoke access at any time. Your privacy settings are easily managed in your account dashboard.',
+    answer: 'Yes! You have complete control over your information sharing. You can choose which health coaches to share information with, what specific data to include, and revoke access at any time. Your privacy settings are easily managed in your account dashboard.',
     tags: ['privacy controls', 'data sharing', 'consent management']
   }
 ];
 
-const categories = ['All', 'Getting Started', 'For Clients', 'For Dietitians', 'Technical Support', 'Account Management', 'Billing and Payments', 'Privacy and Security'];
+const categories = ['All', 'Getting Started', 'For Clients', 'For Health Coaches', 'Technical Support', 'Account Management', 'Billing and Payments', 'Privacy and Security'];
 
 export default function FAQPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -257,7 +257,7 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
           <p className="text-xl text-blue-100">
-            Find answers to common questions about DietInt
+            Find answers to common questions about CoachPulse
           </p>
         </div>
       </div>
@@ -360,7 +360,7 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:support@dietint.com"
+              href="mailto:support@coachpulse.in"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Email Support
@@ -374,8 +374,8 @@ export default function FAQPage() {
           </div>
           
           <div className="mt-6 text-sm text-gray-500">
-            <p>📧 Email: support@dietint.com</p>
-            <p>📞 Phone: 1-800-DIET-INT</p>
+            <p>📧 Email: support@coachpulse.in</p>
+            <p>📞 Phone: Available via consultation</p>
             <p>⏰ Hours: Monday-Friday, 9 AM - 6 PM EST</p>
           </div>
         </div>
