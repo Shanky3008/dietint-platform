@@ -30,6 +30,8 @@ export default function CoachDashboardPage() {
   const [plans, setPlans] = useState<Array<{id:number; title:string}>>([]);
   const [toast, setToast] = useState<{open: boolean; message: string; severity: 'success'|'error'}>({open:false,message:'',severity:'success'});
   const [alerts, setAlerts] = useState<Array<{type:string;priority:'low'|'medium'|'high';client_id:number;client_name:string;message:string}>>([]);
+  const [broadcastOpen, setBroadcastOpen] = useState(false);
+  const [broadcastText, setBroadcastText] = useState('Quick update: Let me know if you need help today. Proud of your progress!');
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -114,6 +116,7 @@ export default function CoachDashboardPage() {
                       setToast({open:true,severity:'success',message:`Nudged ${d.sent} red clients`});
                     } catch { setToast({open:true,severity:'error',message:'Failed to nudge all red'}); }
                   }} size="small" variant="outlined">Nudge All Red</Button>
+                  <Button onClick={()=>setBroadcastOpen(true)} size="small" variant="outlined">Broadcast</Button>
                   <Button onClick={fetchRisk} size="small">Refresh</Button>
                 </Box>
               </Box>
@@ -224,6 +227,33 @@ export default function CoachDashboardPage() {
           {toast.message}
         </Alert>
       </Snackbar>
+
+      {/* Broadcast Dialog */}
+      <Dialog open={broadcastOpen} onClose={()=>setBroadcastOpen(false)}>
+        <DialogTitle>Broadcast Message to All Clients</DialogTitle>
+        <DialogContent>
+          <TextField fullWidth multiline minRows={4} value={broadcastText} onChange={(e)=>setBroadcastText(e.target.value)} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>setBroadcastOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={async ()=>{
+            try {
+              const token = localStorage.getItem('token');
+              const res = await fetch('/api/whatsapp/broadcast', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+                body: JSON.stringify({ text: broadcastText })
+              });
+              if (!res.ok) throw new Error('Failed');
+              const data = await res.json();
+              setToast({open:true,severity:'success',message:`Broadcast sent to ${data.sent}/${data.total} clients`});
+              setBroadcastOpen(false);
+            } catch {
+              setToast({open:true,severity:'error',message:'Broadcast failed'});
+            }
+          }}>Send</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

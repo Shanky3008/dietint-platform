@@ -149,6 +149,35 @@ ADMIN_PASSWORD=secure-admin-password
 # Coming soon; keep placeholders if needed
 ```
 
+## 🔌 API Overview (MVP Endpoints)
+
+- Auth (JWT)
+  - `POST /api/auth/register` (Client requires `invite_code`; Coach/Admin optional)
+- Invites
+  - `GET /api/invites?coach_id=` (COACH/ADMIN)
+  - `POST /api/invites` (COACH/ADMIN) → `{ code }`
+  - `POST /api/invites/redeem` (CLIENT/COACH/ADMIN) → body `{ code }`
+- Plans
+  - `POST /api/plans/assign` (COACH/ADMIN) → body `{ client_id, plan_id }`
+  - `GET /api/plans/current[?client_id=]` (CLIENT/COACH/ADMIN)
+  - `GET /api/plans/list` (COACH/ADMIN) → coach plans for picker
+- Intelligence
+  - `GET /api/intelligence/risk` (COACH/ADMIN) → client risk bands
+  - `GET /api/intelligence/alerts` (COACH/ADMIN) → suggested actions
+  - `POST /api/intelligence/nudge-all-red` (COACH/ADMIN)
+- WhatsApp (rate-limited)
+  - `POST /api/whatsapp/nudge` (COACH/ADMIN) → body `{ client_id, text }`
+  - `POST /api/whatsapp/broadcast` (COACH/ADMIN) → body `{ text }`
+- Uploads
+  - `POST /api/uploads/sign` (auth) → Cloudinary signed params (prod UIs should upload direct)
+- Billing (UPI-based platform fees)
+  - `POST /api/billing/invoice` (COACH/ADMIN) → returns current invoice + UPI link
+  - `POST /api/billing/confirm` (COACH/ADMIN) → `{ invoice_id, utr, proof_url? }`
+  - `GET /api/billing/invoices` (ADMIN) → list due/submitted
+  - `POST /api/billing/verify` (ADMIN) → `{ invoice_id }`
+
+See pages for corresponding UIs: `/dashboard/coach`, `/dashboard/plan`, `/dashboard/billing`, `/admin/billing`, `/admin/upi`.
+
 ### **Available Scripts**
 
 ```bash

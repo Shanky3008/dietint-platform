@@ -55,8 +55,9 @@ export default function Navbar() {
 
   const menuItems = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '#services' },
-    { label: 'Articles', href: '/articles' },
+    { label: 'Features', href: '/features' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Mobile', href: '/mobile' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ];
@@ -146,6 +147,21 @@ export default function Navbar() {
                   {item.label}
                 </Button>
               ))}
+              {isAuthenticated && user?.role === 'COACH' && (
+                <Button component={Link} href="/dashboard/billing" sx={{ color: 'text.primary', textTransform: 'none' }}>
+                  Billing
+                </Button>
+              )}
+              {isAuthenticated && user?.role === 'ADMIN' && (
+                <>
+                  <Button component={Link} href="/admin/billing" sx={{ color: 'text.primary', textTransform: 'none' }}>
+                    Admin Billing
+                  </Button>
+                  <Button component={Link} href="/admin/upi" sx={{ color: 'text.primary', textTransform: 'none' }}>
+                    UPI Settings
+                  </Button>
+                </>
+              )}
               
               {!isAuthenticated ? (
                 <>
