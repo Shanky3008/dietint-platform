@@ -1,4 +1,4 @@
-// Comprehensive Indian Food Database for DietInt Chatbot
+// Comprehensive Indian Food Database for CoachPulse Chatbot
 // Organized by food categories with nutritional information and health benefits
 
 export interface FoodItem {

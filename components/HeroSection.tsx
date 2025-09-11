@@ -69,7 +69,7 @@ export default function HeroSection() {
             >
               {content.hero?.title?.value || 'Transform Your Health with Intelligent Nutrition'}{' '}
               <Typography component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
-                {content.branding?.app_name?.value || 'DietInt'}
+                {content.branding?.app_name?.value || 'CoachPulse'}
               </Typography>
             </Typography>
             

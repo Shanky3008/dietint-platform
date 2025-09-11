@@ -1,18 +1,14 @@
-// Central branding configuration for DietInt
+// Central branding configuration for CoachPulse
 export const BRAND_CONFIG = {
   // App Identity
-  name: 'DietInt',
-  tagline: 'Diet Intelligence • Diet Interaction',
-  description: 'Intelligent nutrition guidance through seamless interaction with expert dietitians',
+  name: 'CoachPulse',
+  tagline: 'The Intelligent Platform for Health & Wellness Coaches',
+  description: 'Help coaches manage their clients effortlessly with smart alerts, automated nudges, and white-labeled branding',
   
   // Visual Identity
-  logo: {
-    emoji: '🧠💬',
-    text: 'DietInt',
-    full: '🧠💬 DietInt'
-  },
+  logo: { emoji: '💪🎯', text: 'CoachPulse', full: '💪🎯 CoachPulse' },
   
-  // Color Scheme (Health-focused DietInt brand colors)
+  // Color Scheme (Professional coaching brand colors)
   colors: {
     primary: '#2E7D32',      // Deep green for health/trust
     secondary: '#FF9800',    // Warm orange for energy
@@ -34,26 +30,15 @@ export const BRAND_CONFIG = {
   },
   
   // Contact Information
-  contact: {
-    email: 'hello@dietint.com',
-    phone: '+1 (555) 123-DIET',
-    address: '123 Wellness Street, Health City, HC 12345',
-    hours: 'Mon-Fri: 9AM-6PM, Sat: 10AM-4PM'
-  },
+  contact: { email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@coachpulse.in', phone: process.env.NEXT_PUBLIC_SUPPORT_PHONE || '+91-XXXXXXXXXX', address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || 'India', hours: 'Mon-Fri: 9AM-6PM, Sat: 10AM-4PM' },
   
   // Social Media
-  social: {
-    website: 'https://dietint.com',
-    twitter: '@DietIntApp',
-    facebook: 'DietIntApp',
-    instagram: '@dietint.com',
-    linkedin: 'company/dietint'
-  },
+  social: { website: 'https://coachpulse.in', twitter: '@CoachPulseApp', facebook: 'CoachPulseApp', instagram: '@coachpulse.in', linkedin: 'company/coachpulse' },
   
   // SEO Configuration
   seo: {
-    title: 'DietInt - Diet Intelligence & Interaction Platform',
-    description: 'Experience intelligent nutrition guidance through seamless interaction with expert dietitians. Get personalized diet plans, smart recommendations, and real-time support with DietInt.',
+    title: 'CoachPulse - Platform for Health & Wellness Coaches',
+    description: 'Manage your coaching clients with smart alerts and automated nudges. ₹200 per client per month. Never lose a client to neglect again.',
     keywords: [
       'diet intelligence',
       'nutrition interaction',
@@ -66,24 +51,18 @@ export const BRAND_CONFIG = {
       'dietitian platform',
       'smart meal planning'
     ],
-    ogImage: '/images/dietint-og.jpg',
+    ogImage: '/images/coachpulse-og.jpg',
     twitterCard: 'summary_large_image'
   },
   
   // Business Information
   business: {
-    name: 'DietInt Nutrition Platform',
-    type: 'Intelligent Nutrition Interaction Platform',
+    name: 'CoachPulse Professional Coaching',
+    type: 'B2B2C Coaching Platform',
     founded: '2024',
-    mission: 'To revolutionize nutrition guidance by combining artificial intelligence with seamless human interaction for personalized health outcomes.',
-    vision: 'A world where intelligent nutrition guidance and expert interaction create lasting health transformations for everyone.',
-    values: [
-      'Intelligent nutrition solutions',
-      'Seamless interaction experience',
-      'Evidence-based recommendations',
-      'Personalized approach',
-      'Accessible expert guidance'
-    ]
+    mission: 'To empower health and wellness coaches with intelligent tools that help them manage more clients while never losing anyone to neglect.',
+    vision: 'A world where every coach can scale their practice with smart automation and data-driven insights.',
+    values: [ 'Coach empowerment', 'Client retention focus', 'Smart automation', 'Data-driven insights', 'Scalable solutions' ]
   },
   
   // Features Highlight

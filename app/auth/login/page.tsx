@@ -120,7 +120,7 @@ export default function LoginPage() {
                   Welcome Back
                 </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                  Sign in to your DietInt account
+            Sign in to your CoachPulse account
                 </Typography>
               </Box>
               

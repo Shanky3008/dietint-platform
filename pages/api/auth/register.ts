@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { getDatabaseAdapter, getDatabase } from '../../../lib/database';
 import { DEFAULT_ROLE } from '../../../lib/roles';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dietint_secret_key_2024';
+const JWT_SECRET = process.env.JWT_SECRET || 'coachpulse_secret_key_2024';
 
 export default async function handler(
   req: NextApiRequest,

@@ -84,7 +84,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Format payments data
     const formattedPayments = payments.map((payment: any) => ({
       ...payment,
-      service_name: payment.service_name || 'DietInt Service',
+    service_name: payment.service_name || 'CoachPulse Service',
       currency: payment.currency || 'USD',
       commission: parseFloat((payment.amount * 0.15).toFixed(2))
     }));

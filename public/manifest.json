@@ -1,6 +1,6 @@
 {
-  "name": "DietInt - Diet Intelligence & Interaction Platform",
-  "short_name": "DietInt",
+  "name": "CoachPulse - Platform for Health & Wellness Coaches",
+  "short_name": "CoachPulse",
   "description": "Intelligent nutrition guidance through seamless interaction with expert dietitians. Achieve your wellness goals with personalized diet plans and smart recommendations.",
   "id": "/",
   "start_url": "/",
@@ -68,14 +68,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "DietInt Dashboard"
+      "label": "CoachPulse Dashboard"
     },
     {
       "src": "/screenshots/mobile-screenshot.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "DietInt Mobile View"
+      "label": "CoachPulse Mobile View"
     }
   ],
   "shortcuts": [

@@ -1,7 +1,7 @@
-// DietInt Service Worker - PWA Offline Support
-const CACHE_NAME = 'dietint-v2.0.0';
-const STATIC_CACHE_NAME = 'dietint-static-v2.0.0';
-const DYNAMIC_CACHE_NAME = 'dietint-dynamic-v2.0.0';
+// CoachPulse Service Worker - PWA Offline Support
+const CACHE_NAME = 'coachpulse-v2.0.0';
+const STATIC_CACHE_NAME = 'coachpulse-static-v2.0.0';
+const DYNAMIC_CACHE_NAME = 'coachpulse-dynamic-v2.0.0';
 
 // Files to cache for offline functionality
 const STATIC_ASSETS = [
@@ -219,7 +219,7 @@ function createOfflineResponse() {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DietInt - Offline</title>
+        <title>CoachPulse - Offline</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -274,7 +274,7 @@ function createOfflineResponse() {
     <body>
         <div class="offline-container">
             <div class="offline-icon">🥗</div>
-            <h1>DietInt</h1>
+            <h1>CoachPulse</h1>
             <p>You're currently offline, but don't worry! Some features are still available.</p>
             <p>Check your internet connection and try again.</p>
             <button class="retry-btn" onclick="window.location.reload()">
@@ -326,7 +326,7 @@ self.addEventListener('push', (event) => {
   console.log('[SW] Push notification received');
   
   const options = {
-    body: event.data ? event.data.text() : 'New notification from DietInt',
+    body: event.data ? event.data.text() : 'New notification from CoachPulse',
     icon: '/icons/icon-192x192.svg',
     badge: '/icons/icon-72x72.svg',
     vibrate: [200, 100, 200],
@@ -348,7 +348,7 @@ self.addEventListener('push', (event) => {
   };
   
   event.waitUntil(
-    self.registration.showNotification('DietInt', options)
+    self.registration.showNotification('CoachPulse', options)
   );
 });
 
@@ -367,7 +367,7 @@ self.addEventListener('notificationclick', (event) => {
 
 // Periodic background sync (if supported)
 self.addEventListener('periodicsync', (event) => {
-  if (event.tag === 'dietint-sync') {
+  if (event.tag === 'coachpulse-sync') {
     event.waitUntil(doBackgroundSync());
   }
 });
@@ -377,4 +377,5 @@ self.addEventListener('error', (event) => {
   console.error('[SW] Service worker error:', event.error);
 });
 
-console.log('[SW] DietInt service worker loaded successfully! 🧠💬');
+console.log('[SW] CoachPulse service worker loaded successfully! 🧠💬');
+

@@ -8,7 +8,7 @@ export type AuthPayload = {
   fullName?: string;
 };
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dietint_secret_key_2024';
+const JWT_SECRET = process.env.JWT_SECRET || 'coachpulse_secret_key_2024';
 
 export function getAuth(req: NextApiRequest): AuthPayload | null {
   try {

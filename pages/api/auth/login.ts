@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { getDatabaseAdapter } from '../../../lib/database';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dietint_secret_key_2024';
+const JWT_SECRET = process.env.JWT_SECRET || 'coachpulse_secret_key_2024';
 
 export default async function handler(
   req: NextApiRequest,

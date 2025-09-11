@@ -102,7 +102,7 @@ const sampleUsers = [
   {
     id: 3,
     fullName: 'Gouri Priya Mylavarapu',
-    email: 'admin@dietint.com',
+  email: 'admin@coachpulse.in',
     role: 'admin',
     status: 'active',
     joinDate: '2024-01-01',
@@ -341,7 +341,7 @@ export default function AdminDashboard() {
                   Admin Dashboard
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
-                  DietInt Management Portal
+              CoachPulse Management Portal
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
                   <Chip label="Administrator" color="primary" size="small" />
