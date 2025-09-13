@@ -13,6 +13,8 @@ export default function BillingPage() {
   const [utr, setUtr] = useState('');
   const [proofUrl, setProofUrl] = useState('');
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [subscription, setSubscription] = useState<any>(null);
+  const [plans, setPlans] = useState<any[]>([]);
 
   useEffect(() => { fetchInvoice(); }, []);
 
@@ -28,6 +30,13 @@ export default function BillingPage() {
         const url = await QRCode.toDataURL(data.upi.link);
         setQr(url);
       }
+      // Load subscription and plans
+      const sres = await fetch('/api/billing/subscription', { headers: token ? { Authorization: `Bearer ${token}` } : undefined });
+      const sdata = await sres.json();
+      setSubscription(sdata.subscription || null);
+      const pres = await fetch('/api/plans');
+      const pdata = await pres.json();
+      setPlans(pdata.plans || []);
     } finally { setLoading(false); }
   }
 
@@ -65,6 +74,9 @@ export default function BillingPage() {
                 <Typography variant="body2">Amount: ₹{invoice?.amount}</Typography>
                 <Typography variant="body2">Reference: {invoice?.ref}</Typography>
                 <Typography variant="body2">Status: {invoice?.status}</Typography>
+                {subscription && (
+                  <Typography variant="body2">Plan: {subscription.name} ({subscription.pricing_model})</Typography>
+                )}
               </Box>
               {upi.link ? (
                 <Grid container spacing={2} sx={{ mt: 2 }}>
@@ -99,6 +111,29 @@ export default function BillingPage() {
                 <Box sx={{ mt: 2 }}>
                   <Button variant="contained" disabled={submitLoading || !utr} onClick={submitConfirmation}>Submit</Button>
                 </Box>
+              </Box>
+
+              <Box sx={{ mt: 4 }}>
+                <Typography variant="h6" fontWeight={700} sx={{ mb: 1 }}>Choose/Change Plan</Typography>
+                <Grid container spacing={2}>
+                  {plans.map((p:any)=> (
+                    <Grid item xs={12} md={4} key={p.id}>
+                      <Card variant="outlined">
+                        <CardContent>
+                          <Typography variant="subtitle1" fontWeight={700}>{p.name}</Typography>
+                          <Typography variant="body2" color="text.secondary">₹{p.price_inr} {p.pricing_model === 'flat' ? '/month flat' : '/client/month'}</Typography>
+                          <Box sx={{ mt: 1 }}>
+                            <Button size="small" variant="contained" onClick={async ()=>{
+                              const token = localStorage.getItem('token');
+                              const res = await fetch('/api/billing/subscribe', { method:'POST', headers: { 'Content-Type':'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) }, body: JSON.stringify({ plan_code: p.code }) });
+                              if (res.ok) { await fetchInvoice(); }
+                            }}>Choose</Button>
+                          </Box>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  ))}
+                </Grid>
               </Box>
             </CardContent>
           </Card>

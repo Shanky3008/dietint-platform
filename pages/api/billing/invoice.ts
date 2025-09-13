@@ -32,22 +32,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const db = await getDatabaseAdapter();
     const coachId = auth.role === 'COACH' ? auth.userId : Number(req.body?.coach_id || auth.userId);
     const period = periodNow();
+    // Load subscription and plan
+    const sub = await db.get(`SELECT cs.*, p.id as plan_id, p.price_inr, p.pricing_model FROM coach_subscriptions cs JOIN plans p ON p.id = cs.plan_id WHERE cs.coach_id = ?`, [coachId]);
     // Check existing invoice
     let invoice = await db.get(`SELECT * FROM invoices WHERE coach_id = ? AND period = ?`, [coachId, period]);
     // Get active clients count snapshot
     const countRow = await db.get(`SELECT COUNT(*) as c FROM users WHERE coach_id = ? AND role = 'CLIENT'`, [coachId]);
     const activeCount = Number(countRow?.c || 0);
-    const amount = activeCount * 200; // rupees
+    let amount = activeCount * 200; // default basic
+    if (sub) {
+      amount = sub.pricing_model === 'flat' ? sub.price_inr : (sub.price_inr * activeCount);
+    }
     if (!invoice) {
       const ref = `INV-${period.replace('-','')}-${coachId}-${Math.random().toString(36).slice(2,8)}`;
       await db.run(
-        `INSERT INTO invoices (coach_id, period, amount, active_clients_snapshot, ref, status) VALUES (?, ?, ?, ?, ?, 'due')`,
-        [coachId, period, amount, activeCount, ref]
+        `INSERT INTO invoices (coach_id, period, amount, active_clients_snapshot, ref, status, plan_id) VALUES (?, ?, ?, ?, ?, 'due', ?)`,
+        [coachId, period, amount, activeCount, ref, sub?.plan_id || null]
       );
       invoice = await db.get(`SELECT * FROM invoices WHERE coach_id = ? AND period = ?`, [coachId, period]);
     } else if (invoice.status === 'due') {
       // keep snapshot but update amount in case pricing or snapshot changed
-      await db.run(`UPDATE invoices SET amount = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`, [amount, invoice.id]);
+      await db.run(`UPDATE invoices SET amount = ?, plan_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`, [amount, sub?.plan_id || null, invoice.id]);
       invoice = await db.get(`SELECT * FROM invoices WHERE id = ?`, [invoice.id]);
     }
     // Resolve UPI settings
