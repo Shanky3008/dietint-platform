@@ -49,7 +49,6 @@ import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ServicesSection from '@/components/ServicesSection';
-import { Card, CardContent } from '@mui/material';
 
 type CurrentPlan = {
   id: number;
