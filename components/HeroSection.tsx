@@ -67,7 +67,7 @@ export default function HeroSection() {
                 lineHeight: 1.2
               }}
             >
-              {content.hero?.title?.value || 'Transform Your Health with Intelligent Nutrition'}{' '}
+              {content.hero?.title?.value || 'The Intelligent Platform for Health & Wellness Coaches'}{' '}
               <Typography component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
                 {content.branding?.app_name?.value || 'CoachPulse'}
               </Typography>
@@ -81,7 +81,7 @@ export default function HeroSection() {
                 fontSize: { xs: '1.1rem', md: '1.25rem' }
               }}
             >
-              {content.hero?.subtitle?.value || 'Intelligent nutrition through seamless interaction'}
+              {content.hero?.subtitle?.value || 'Retain more clients with smart alerts, automated nudges, and a white‑label client experience.'}
             </Typography>
             
             <Typography 
@@ -92,7 +92,7 @@ export default function HeroSection() {
                 fontSize: { xs: '1rem', md: '1.1rem' }
               }}
             >
-              {content.hero?.description?.value || 'Experience intelligent nutrition guidance through interactive consultations with certified dietitians. Our smart platform adapts to your needs, providing personalized diet plans and real-time support for your health journey.'}
+              {content.hero?.description?.value || 'CoachPulse helps you manage 100+ clients as easily as 10 — by surfacing who needs attention, automating follow‑ups that feel human, and keeping your brand front and center.'}
             </Typography>
             
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 5 }}>
@@ -100,7 +100,7 @@ export default function HeroSection() {
                 variant="contained" 
                 size="large"
                 component={Link}
-                href="/auth/register"
+                href="/pricing"
                 sx={{ 
                   px: 4,
                   py: 1.5,
@@ -108,29 +108,29 @@ export default function HeroSection() {
                   fontWeight: 'bold'
                 }}
               >
-                {content.hero?.cta_primary?.value || 'Get Started Today'}
+                {content.hero?.cta_primary?.value || 'Choose a Plan'}
               </Button>
               <Button 
                 variant="outlined" 
                 size="large"
                 component={Link}
-                href="#services"
+                href="/dashboard/coach"
                 sx={{ 
                   px: 4,
                   py: 1.5,
                   fontSize: '1.1rem'
                 }}
               >
-                {content.hero?.cta_secondary?.value || 'Learn More'}
+                {content.hero?.cta_secondary?.value || 'Go to Coach Dashboard'}
               </Button>
             </Box>
             
             <Grid container spacing={3} sx={{ mb: 4 }}>
               {[
-                { icon: <Security />, title: 'AI-Powered Intelligence', desc: 'Smart nutrition recommendations' },
-                { icon: <NaturePeople />, title: 'Interactive Consultations', desc: 'Real-time dietitian support' },
-                { icon: <Favorite />, title: 'Adaptive Learning', desc: 'Plans that evolve with you' },
-                { icon: <FitnessCenter />, title: 'Smart Tracking', desc: 'Intelligent progress monitoring' }
+                { icon: <Security />, title: 'Smart Alerts', desc: 'Know who needs attention, when' },
+                { icon: <NaturePeople />, title: 'Ghost Prevention', desc: 'Predict disengagement early' },
+                { icon: <Favorite />, title: 'Automated Nudges', desc: 'Human‑like reminders at scale' },
+                { icon: <FitnessCenter />, title: 'White‑Label Branding', desc: 'Your brand across web + mobile' }
               ].map((feature, index) => (
                 <Grid item xs={6} key={index}>
                   <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -158,46 +158,16 @@ export default function HeroSection() {
               ))}
             </Grid>
             
-            {/* Professional Photo and Credentials */}
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-              <Avatar
-                src="/gouri-professional-photo.jpg" // Professional photo placeholder
-                alt="Gouri Priya Mylavarapu - Certified Nutritionist"
-                sx={{ 
-                  width: 80, 
-                  height: 80, 
-                  mr: 3,
-                  border: '3px solid',
-                  borderColor: 'primary.main'
-                }}
-              />
-              <Box>
-                <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
-                  Gouri Priya Mylavarapu
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
-                  MSc Nutrition • 15+ Years Experience
-                </Typography>
-                <Typography variant="body2" color="primary.main" sx={{ fontWeight: 'bold' }}>
-                  Hyderabad, India
-                </Typography>
-              </Box>
-            </Box>
-
+            {/* Coach-focused social proof (generic, no personal details) */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Box sx={{ display: 'flex', mr: 2 }}>
-                <Avatar sx={{ bgcolor: 'orange.400', width: 40, height: 40, fontSize: '0.875rem', mr: -1 }}>NK</Avatar>
-                <Avatar sx={{ bgcolor: 'blue.400', width: 40, height: 40, fontSize: '0.875rem', mr: -1 }}>TM</Avatar>
-                <Avatar sx={{ bgcolor: 'green.400', width: 40, height: 40, fontSize: '0.875rem' }}>RR</Avatar>
-              </Box>
               <Box>
                 <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                  Trusted by <Typography component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>500+</Typography> satisfied clients
+                  Trusted by coaches across India
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 0.5 }}>
                   <Rating value={5} readOnly size="small" />
                   <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
-                    Top rated
+                    Proven retention and time savings
                   </Typography>
                 </Box>
               </Box>
