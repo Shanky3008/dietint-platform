@@ -6,52 +6,40 @@ import { Card, CardContent, CardMedia, Typography, Button, Box, Container, Grid 
 export default function ServicesSection() {
   const services = [
     {
-      title: 'AT-HOME Foods Nutrition',
-      description: 'Personalized diet plans using everyday kitchen ingredients. No special diet products required - sustainable nutrition with foods you already have.',
-      image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=at-home-nutrition'
+      title: 'Smart Alerts',
+      description: 'Instantly know who needs attention ("Priya hasn\'t logged lunch"). Triage by priority with real-time signals.',
+      image: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?w=800&auto=format&fit=crop',
+      href: '/dashboard/coach'
     },
     {
-      title: 'Traditional Cuisine Adaptation',
-      description: 'Healthy adaptations of Telugu and regional Indian cuisine. Maintain cultural food preferences while achieving health goals.',
-      image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=traditional-cuisine'
+      title: 'Ghost Prevention',
+      description: 'Predict disengagement early and intervene before clients go silent. Protect retention and revenue.',
+      image: 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=800&auto=format&fit=crop',
+      href: '/dashboard/coach'
     },
     {
-      title: 'Corporate Wellness Programs',
-      description: 'Group nutrition talks and wellness programs for organizations. Improve employee health and productivity through nutrition education.',
-      image: 'https://images.unsplash.com/photo-1561043433-aaf687c4cf04?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=corporate-wellness'
+      title: 'Automated Nudges',
+      description: 'Personalized reminders at scale — timing, context, and tone that feel human, not spam.',
+      image: 'https://images.unsplash.com/photo-1497493292307-31c376b6e479?w=800&auto=format&fit=crop',
+      href: '/dashboard/coach'
     },
     {
-      title: 'Weight Management (Sustainable)',
-      description: 'Research-based weight loss through lifestyle changes. Focus on body signal awareness and long-term sustainability.',
-      image: 'https://images.unsplash.com/photo-1579126038374-6064e9370f0f?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=weight-management'
+      title: 'White-Label Branding',
+      description: 'Your domain, logo, and colors across web and mobile. Professional client experience under your brand.',
+      image: 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=800&auto=format&fit=crop',
+      href: '/pricing'
     },
     {
-      title: 'Media Nutrition Consultation',
-      description: 'Expert nutrition content creation for media, recipe development, and health program hosting based on 15+ years TV experience.',
-      image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=media-consultation'
+      title: 'Client CRM + Assignments',
+      description: 'Manage client lists, assign plans, track adherence, and log conversations — all in one place.',
+      image: 'https://images.unsplash.com/photo-1557800636-894a64c1696f?w=800&auto=format&fit=crop',
+      href: '/dashboard/coach/clients'
     },
     {
-      title: 'Hospital Partnership Programs',
-      description: 'Clinical nutrition support and specialized diet planning for hospital patients and healthcare technology integration.',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=hospital-partnership'
-    },
-    {
-      title: 'PCOS/PCOD Management',
-      description: 'Specialized hormonal balance nutrition using traditional foods and research-based concepts for PCOS symptom management.',
-      image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=pcos-management'
-    },
-    {
-      title: 'Day-to-Day Monitoring',
-      description: 'Continuous nutrition support with daily tracking, body signal awareness training, and real-time diet adjustments.',
-      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop',
-      href: '/auth/register?service=daily-monitoring'
+      title: 'Analytics for Coaches',
+      description: 'Understand engagement, outcomes, and trends at a glance. Focus on actions that move the needle.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop',
+      href: '/dashboard/coach'
     }
   ];
 
@@ -60,10 +48,10 @@ export default function ServicesSection() {
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h3" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'text.primary' }}>
-            Our Services
+            Platform Modules for Coaches
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: '800px', mx: 'auto' }}>
-            Comprehensive nutrition services designed to help you achieve your health and wellness goals.
+            Tools that help you retain more clients, save time, and scale — under your brand.
           </Typography>
         </Box>
         
@@ -108,7 +96,7 @@ export default function ServicesSection() {
                       fontWeight: 'bold'
                     }}
                   >
-                    Book Consultation
+                    Learn More
                   </Button>
                 </CardContent>
               </Card>

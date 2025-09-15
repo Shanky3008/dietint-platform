@@ -6,23 +6,23 @@ import { Card, CardContent, Typography, Button, Box, Chip, Container, Grid } fro
 export default function DietPlanSection() {
   const dietPlans = [
     {
-      title: '7-Day Weight Loss Plan',
-      description: 'Balanced meals designed to help you lose weight safely and sustainably.',
-      features: ['1200-1500 calories', 'High protein', 'Low carb', 'Includes snacks'],
+      title: 'Weight Loss Template',
+      description: 'A starter template coaches can adapt and assign to clients for safe, sustainable weight loss.',
+      features: ['Adjustable macros', 'Meal swap guidance', 'Snack options', 'Indian cuisine variants'],
       image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&auto=format&fit=crop',
       popular: true
     },
     {
-      title: 'Diabetes-Friendly Menu',
-      description: 'Low glycemic index meals to help manage blood sugar levels effectively.',
-      features: ['Low GI foods', 'Fiber rich', 'Portion controlled', 'Indian cuisine'],
+      title: 'Diabetes-Friendly Template',
+      description: 'Low GI template to help clients manage blood sugar levels. Ready to personalize and assign.',
+      features: ['Low GI foods', 'Fiber-rich', 'Portion guidance', 'Regional options'],
       image: 'https://images.unsplash.com/photo-1505935428862-770b6f24f629?w=800&auto=format&fit=crop',
       popular: false
     },
     {
-      title: 'PCOS Management Plan',
-      description: 'Hormone-balancing nutrition plan specifically designed for PCOS management.',
-      features: ['Anti-inflammatory', 'Low glycemic', 'Nutrient dense', 'Satisfying'],
+      title: 'PCOS Management Template',
+      description: 'A hormone-balancing template for coach customization and assignment to clients.',
+      features: ['Anti-inflammatory', 'Low GI', 'Nutrient-dense', 'Satisfying'],
       image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop',
       popular: false
     }
@@ -36,10 +36,10 @@ export default function DietPlanSection() {
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h3" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'text.primary' }}>
-            Sample Diet Plans
+            Plan Templates Library
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: '800px', mx: 'auto' }}>
-            Get a preview of our expertly crafted nutrition plans designed for different health goals.
+            Ready-to-use templates coaches can adapt and assign — speeding up plan creation without losing personalization.
           </Typography>
         </Box>
         
@@ -114,7 +114,7 @@ export default function DietPlanSection() {
                       variant="outlined"
                       fullWidth
                       component={Link}
-                      href="/auth/register"
+                      href="/dashboard/coach"
                       sx={{ 
                         borderColor: 'primary.main',
                         color: 'primary.main',
@@ -123,7 +123,7 @@ export default function DietPlanSection() {
                         fontWeight: 'bold'
                       }}
                     >
-                      Get Custom Plan
+                      Use This Template
                     </Button>
                   </Box>
                 </CardContent>
