@@ -91,7 +91,9 @@ export default function HomePage() {
           const data = await res.json();
           setCurrentPlan(data.plan || null);
         }
-      } catch {}
+      } catch (error) {
+        console.error('Failed to fetch current plan:', error);
+      }
     };
     fetchPlan();
   }, []);
@@ -104,7 +106,7 @@ export default function HomePage() {
       retention: 98
     };
 
-    Object.keys(targets).forEach((key) => {
+    (Object.keys(targets) as Array<keyof typeof targets>).forEach((key) => {
       let current = 0;
       const target = targets[key];
       const increment = target / 100;

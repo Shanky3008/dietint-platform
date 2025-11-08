@@ -137,9 +137,9 @@ export default function DietPlanSection() {
             variant="contained"
             size="large"
             component={Link}
-            href="/auth/register"
-            sx={{ 
-              bgcolor: 'primary.main', 
+            href="/pricing"
+            sx={{
+              bgcolor: 'primary.main',
               '&:hover': { bgcolor: 'primary.dark' },
               px: 4,
               py: 1.5,
@@ -148,7 +148,7 @@ export default function DietPlanSection() {
               fontWeight: 'bold'
             }}
           >
-            Start Your Personalized Journey
+            Get Started as a Coach
           </Button>
         </Box>
       </Container>

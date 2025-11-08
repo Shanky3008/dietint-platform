@@ -8,14 +8,20 @@ export type AuthPayload = {
   fullName?: string;
 };
 
-const JWT_SECRET = process.env.JWT_SECRET || 'coachpulse_secret_key_2024';
+function getJWTSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET environment variable is not set. Please configure it in your environment.');
+  }
+  return secret;
+}
 
 export function getAuth(req: NextApiRequest): AuthPayload | null {
   try {
     const auth = req.headers.authorization || '';
     const [, token] = auth.split(' ');
     if (!token) return null;
-    const payload = jwt.verify(token, JWT_SECRET) as AuthPayload;
+    const payload = jwt.verify(token, getJWTSecret()) as AuthPayload;
     return payload;
   } catch {
     return null;

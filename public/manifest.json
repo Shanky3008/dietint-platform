@@ -1,7 +1,7 @@
 {
   "name": "CoachPulse - Platform for Health & Wellness Coaches",
   "short_name": "CoachPulse",
-  "description": "Intelligent nutrition guidance through seamless interaction with expert dietitians. Achieve your wellness goals with personalized diet plans and smart recommendations.",
+  "description": "Manage your coaching clients with smart alerts, automated nudges, and white-labeled branding. The intelligent platform for health and wellness coaches.",
   "id": "/",
   "start_url": "/",
   "display": "standalone",
@@ -80,10 +80,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Book Appointment",
-      "short_name": "Book",
-      "description": "Quickly book an appointment with a dietitian",
-      "url": "/dashboard?action=book-appointment",
+      "name": "Coach Dashboard",
+      "short_name": "Dashboard",
+      "description": "Access your coach dashboard to manage clients",
+      "url": "/dashboard/coach",
       "icons": [
         {
           "src": "/icons/shortcut-book.png",
@@ -93,10 +93,10 @@
       ]
     },
     {
-      "name": "Track Progress",
-      "short_name": "Progress",
-      "description": "Log your daily nutrition and weight progress",
-      "url": "/dashboard?action=track-progress",
+      "name": "Client Alerts",
+      "short_name": "Alerts",
+      "description": "View clients who need your attention",
+      "url": "/dashboard/coach?view=alerts",
       "icons": [
         {
           "src": "/icons/shortcut-progress.png",
@@ -106,10 +106,10 @@
       ]
     },
     {
-      "name": "View Diet Plan",
-      "short_name": "Diet Plan",
-      "description": "Access your personalized diet plan",
-      "url": "/dashboard?action=diet-plan",
+      "name": "Plan Templates",
+      "short_name": "Templates",
+      "description": "Browse and customize coaching templates",
+      "url": "/dashboard/coach?view=templates",
       "icons": [
         {
           "src": "/icons/shortcut-diet.png",

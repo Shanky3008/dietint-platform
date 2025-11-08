@@ -176,66 +176,66 @@ export default function HeroSection() {
           
           <Grid item xs={12} md={6}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-              <Box sx={{ 
-                bgcolor: 'white', 
-                borderRadius: 3, 
-                boxShadow: 3, 
+              <Box sx={{
+                bgcolor: 'white',
+                borderRadius: 3,
+                boxShadow: 3,
                 p: 3,
                 border: '1px solid',
                 borderColor: 'primary.100'
               }}>
                 <Typography variant="h6" sx={{ color: 'primary.main', mb: 2, fontWeight: 'bold' }}>
-                  Personalized Nutrition Plans
+                  Custom Module Templates
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-                  Custom diet solutions tailored to your specific health goals, food preferences, and lifestyle needs.
+                  Ready-made coaching modules for different health goals. White-label them with your branding and deliver to clients instantly.
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  <Chip 
-                    label="Weight Management" 
+                  <Chip
+                    label="Weight Loss Programs"
                     sx={{ bgcolor: 'primary.100', color: 'primary.700' }}
                     size="small"
                   />
-                  <Chip 
-                    label="PCOS/PCOD" 
+                  <Chip
+                    label="PCOS Management"
                     sx={{ bgcolor: 'secondary.100', color: 'secondary.700' }}
                     size="small"
                   />
-                  <Chip 
-                    label="Diabetes" 
+                  <Chip
+                    label="Diabetes Care"
                     sx={{ bgcolor: 'warning.100', color: 'warning.700' }}
                     size="small"
                   />
-                  <Chip 
-                    label="Healthy Lifestyle" 
+                  <Chip
+                    label="Wellness & Lifestyle"
                     sx={{ bgcolor: 'success.100', color: 'success.700' }}
                     size="small"
                   />
                 </Box>
               </Box>
-              
-              <Box sx={{ 
-                bgcolor: 'white', 
-                borderRadius: 3, 
-                boxShadow: 3, 
+
+              <Box sx={{
+                bgcolor: 'white',
+                borderRadius: 3,
+                boxShadow: 3,
                 p: 3,
                 border: '1px solid',
                 borderColor: 'primary.100'
               }}>
                 <Typography variant="h6" sx={{ color: 'primary.main', mb: 2, fontWeight: 'bold' }}>
-                  Online Consultations
+                  Coach Dashboard
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-                  Connect with our expert nutritionist from anywhere for personalized advice and guidance.
+                  Manage all your clients in one place. Track engagement, send automated nudges, and keep everyone on track.
                 </Typography>
-                <Button 
-                  variant="contained" 
+                <Button
+                  variant="contained"
                   fullWidth
                   component={Link}
-                  href="/auth/register"
+                  href="/dashboard/coach"
                   sx={{ fontWeight: 'bold' }}
                 >
-                  Book Appointment
+                  Access Coach Dashboard
                 </Button>
               </Box>
             </Box>
