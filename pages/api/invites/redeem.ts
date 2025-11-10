@@ -2,8 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDatabaseAdapter } from '@/lib/database';
 import { requireAuth } from '@/lib/security/auth';
 import { simpleRateLimit } from '@/lib/security/rateLimit';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const WhatsAppService = require('@/lib/whatsapp/whatsappService.js');
+import WhatsAppService from '@/lib/whatsapp/whatsappService.js';
+import { logger } from '@/lib/security/logger';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -45,12 +45,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await wa.sendWelcomeMessage(user.phone, user.fullName || 'there');
       }
     } catch (waErr) {
-      console.log('WhatsApp welcome skipped:', (waErr as Error).message);
+      await logger.warn('WhatsApp welcome skipped', { error: (waErr as Error).message });
     }
 
     return res.status(200).json({ success: true, coach_id: invite.coach_id || null });
   } catch (err: any) {
-    console.error('Redeem invite error:', err);
+    await logger.error('Redeem invite error', err instanceof Error ? err : new Error(String(err)));
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }

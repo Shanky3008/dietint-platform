@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDatabaseAdapter } from '@/lib/database';
 import { requireAuth } from '@/lib/security/auth';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const WhatsAppService = require('@/lib/whatsapp/whatsappService.js');
+import WhatsAppService from '@/lib/whatsapp/whatsappService.js';
 import { simpleRateLimit } from '@/lib/security/rateLimit';
+import { logger } from '@/lib/security/logger';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const auth = requireAuth(req, res, ['COACH', 'ADMIN']);
@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await wa.sendMessage(client.phone, { type: 'text', text });
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('Nudge error:', err);
+    await logger.error('Nudge error', err instanceof Error ? err : new Error(String(err)));
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
