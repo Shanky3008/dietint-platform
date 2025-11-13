@@ -47,12 +47,6 @@ const premiumTheme = createTheme({
       dark: '#C66900',
       contrastText: '#ffffff',
     },
-    accent: {
-      main: BRAND_CONFIG.colors.accent, // '#03A9F4'
-      light: '#4FC3F7',
-      dark: '#0277BD',
-      contrastText: '#ffffff',
-    },
     background: {
       default: '#FAFAFA',
       paper: '#FFFFFF',

@@ -3,11 +3,11 @@
 import { Box, BoxProps, alpha } from '@mui/material';
 import { ReactNode } from 'react';
 
-interface GlassCardProps extends BoxProps {
+interface GlassCardProps extends Omit<BoxProps, 'border'> {
   children: ReactNode;
   blur?: number;
   opacity?: number;
-  border?: boolean;
+  showBorder?: boolean;
   hover?: boolean;
 }
 
@@ -15,7 +15,7 @@ export default function GlassCard({
   children,
   blur = 20,
   opacity = 0.7,
-  border = true,
+  showBorder = true,
   hover = true,
   sx,
   ...props
@@ -27,7 +27,7 @@ export default function GlassCard({
         backdropFilter: `blur(${blur}px) saturate(180%)`,
         WebkitBackdropFilter: `blur(${blur}px) saturate(180%)`,
         borderRadius: '24px',
-        border: border ? `1px solid ${alpha('#ffffff', 0.3)}` : 'none',
+        border: showBorder ? `1px solid ${alpha('#ffffff', 0.3)}` : 'none',
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
         ...(hover && {

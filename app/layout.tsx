@@ -1,13 +1,5 @@
-import { Inter } from 'next/font/google';
 import ThemeRegistry from '@/components/ThemeRegistry';
 import './globals.css';
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  display: 'swap',
-  variable: '--font-inter',
-});
 
 export const metadata = {
   title: 'CoachPulse - Platform for Health & Wellness Coaches',
@@ -42,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={inter.className}>
+    <html lang="en">
+      <body>
         <ThemeRegistry>
           {children}
         </ThemeRegistry>
