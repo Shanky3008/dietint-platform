@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import Animated, { FadeInDown, FadeInUp, FadeIn } from 'react-native-reanimated';
 import { useAuth } from '../hooks/useAuth';
 import { appointmentService, progressService, notificationService } from '../api/apiClient';
 
@@ -139,29 +140,46 @@ const HomeScreen = ({ navigation }: any) => {
     },
   ];
 
-  const StatCard = ({ title, value, subtitle, icon, color = '#2E7D32' }: any) => (
-    <View style={styles.statCard}>
-      <View style={[styles.statIcon, { backgroundColor: color }]}>
+  const StatCard = ({ title, value, subtitle, icon, color = '#2E7D32', index = 0 }: any) => (
+    <Animated.View
+      entering={FadeInUp.delay(index * 100).duration(600).springify()}
+      style={styles.statCard}
+    >
+      <LinearGradient
+        colors={[color, `${color}E6`]}
+        style={styles.statIcon}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+      >
         <Ionicons name={icon} size={24} color="white" />
-      </View>
+      </LinearGradient>
       <View style={styles.statContent}>
         <Text style={styles.statValue}>{value}</Text>
         <Text style={styles.statTitle}>{title}</Text>
         {subtitle && <Text style={styles.statSubtitle}>{subtitle}</Text>}
       </View>
-    </View>
+    </Animated.View>
   );
 
-  const QuickActionCard = ({ title, icon, color, onPress }: any) => (
-    <TouchableOpacity style={styles.quickActionCard} onPress={onPress}>
-      <LinearGradient
-        colors={[color, `${color}CC`]}
-        style={styles.quickActionGradient}
-      >
-        <Ionicons name={icon} size={28} color="white" />
-        <Text style={styles.quickActionText}>{title}</Text>
-      </LinearGradient>
-    </TouchableOpacity>
+  const QuickActionCard = ({ title, icon, color, onPress, index = 0 }: any) => (
+    <Animated.View
+      entering={FadeInDown.delay(index * 100).duration(600).springify()}
+      style={styles.quickActionCard}
+    >
+      <TouchableOpacity style={styles.quickActionTouch} onPress={onPress}>
+        <LinearGradient
+          colors={[color, `${color}CC`]}
+          style={styles.quickActionGradient}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        >
+          <View style={styles.quickActionIconContainer}>
+            <Ionicons name={icon} size={32} color="white" />
+          </View>
+          <Text style={styles.quickActionText}>{title}</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+    </Animated.View>
   );
 
   return (
@@ -173,22 +191,27 @@ const HomeScreen = ({ navigation }: any) => {
         }
       >
         {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.headerContent}>
+        <LinearGradient
+          colors={['#667eea', '#764ba2']}
+          style={styles.header}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        >
+          <Animated.View entering={FadeIn.duration(600)} style={styles.headerContent}>
             <View>
               <Text style={styles.greeting}>
                 Good {new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 17 ? 'Afternoon' : 'Evening'}!
               </Text>
               <Text style={styles.userName}>{user?.fullName}</Text>
               <Text style={styles.userRole}>
-                {isNutritionist ? 'Nutritionist Dashboard' : 'Your Health Journey'}
+                {isNutritionist ? 'Coach Dashboard' : 'Your Health Journey'}
               </Text>
             </View>
             <TouchableOpacity
               style={styles.notificationButton}
               onPress={() => navigation.navigate('Notifications')}
             >
-              <Ionicons name="notifications" size={24} color="white" />
+              <Ionicons name="notifications" size={26} color="white" />
               {stats.unreadNotifications > 0 && (
                 <View style={styles.notificationBadge}>
                   <Text style={styles.notificationBadgeText}>
@@ -197,12 +220,14 @@ const HomeScreen = ({ navigation }: any) => {
                 </View>
               )}
             </TouchableOpacity>
-          </View>
-        </View>
+          </Animated.View>
+        </LinearGradient>
 
         {/* Stats Overview */}
         <View style={styles.statsContainer}>
-          <Text style={styles.sectionTitle}>Overview</Text>
+          <Animated.Text entering={FadeIn.delay(200).duration(600)} style={styles.sectionTitle}>
+            Overview
+          </Animated.Text>
           <View style={styles.statsGrid}>
             <StatCard
               title="Upcoming"
@@ -210,6 +235,7 @@ const HomeScreen = ({ navigation }: any) => {
               subtitle="Appointments"
               icon="calendar"
               color="#2E7D32"
+              index={0}
             />
             <StatCard
               title="Active"
@@ -217,30 +243,35 @@ const HomeScreen = ({ navigation }: any) => {
               subtitle="Diet Plans"
               icon="restaurant"
               color="#FF9800"
+              index={1}
             />
             <StatCard
               title="Notifications"
               value={stats.unreadNotifications}
               subtitle="Unread"
               icon="notifications"
-              color="#2196F3"
+              color="#667eea"
+              index={2}
             />
             <StatCard
               title="Weight"
               value={stats.currentWeight ? `${stats.currentWeight}kg` : 'N/A'}
               subtitle={stats.weightChange ? `${stats.weightChange > 0 ? '+' : ''}${stats.weightChange}kg` : 'No change'}
               icon="fitness"
-              color="#9C27B0"
+              color="#764ba2"
+              index={3}
             />
           </View>
         </View>
 
         {/* Quick Actions */}
         <View style={styles.quickActionsContainer}>
-          <Text style={styles.sectionTitle}>Quick Actions</Text>
+          <Animated.Text entering={FadeIn.delay(400).duration(600)} style={styles.sectionTitle}>
+            Quick Actions
+          </Animated.Text>
           <View style={styles.quickActionsGrid}>
             {quickActions.map((action, index) => (
-              <QuickActionCard key={index} {...action} />
+              <QuickActionCard key={index} {...action} index={index} />
             ))}
           </View>
         </View>
@@ -319,15 +350,15 @@ const HomeScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f8f9fa',
   },
   scrollView: {
     flex: 1,
   },
   header: {
-    backgroundColor: '#2E7D32',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: 24,
+    paddingVertical: 28,
+    paddingBottom: 32,
   },
   headerContent: {
     flexDirection: 'row',
@@ -336,47 +367,56 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.9)',
+    color: 'rgba(255, 255, 255, 0.95)',
+    fontWeight: '500',
   },
   userName: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 28,
+    fontWeight: '800',
     color: 'white',
-    marginTop: 4,
+    marginTop: 6,
+    letterSpacing: -0.5,
   },
   userRole: {
-    fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.8)',
-    marginTop: 2,
+    fontSize: 15,
+    color: 'rgba(255, 255, 255, 0.9)',
+    marginTop: 4,
+    fontWeight: '500',
   },
   notificationButton: {
     position: 'relative',
-    padding: 8,
+    padding: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 14,
   },
   notificationBadge: {
     position: 'absolute',
-    top: 0,
-    right: 0,
+    top: 2,
+    right: 2,
     backgroundColor: '#FF5722',
-    borderRadius: 10,
-    minWidth: 20,
-    height: 20,
+    borderRadius: 12,
+    minWidth: 22,
+    height: 22,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'white',
   },
   notificationBadgeText: {
     color: 'white',
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize: 11,
+    fontWeight: '800',
   },
   statsContainer: {
-    padding: 20,
+    padding: 24,
+    paddingTop: 28,
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 15,
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#1a1a1a',
+    marginBottom: 18,
+    letterSpacing: -0.5,
   },
   statsGrid: {
     flexDirection: 'row',
@@ -385,47 +425,50 @@ const styles = StyleSheet.create({
   },
   statCard: {
     backgroundColor: 'white',
-    width: (width - 50) / 2,
-    marginBottom: 10,
-    padding: 15,
-    borderRadius: 12,
+    width: (width - 58) / 2,
+    marginBottom: 14,
+    padding: 18,
+    borderRadius: 20,
     flexDirection: 'row',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 4,
   },
   statIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 48,
+    height: 48,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 12,
+    marginRight: 14,
   },
   statContent: {
     flex: 1,
   },
   statValue: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#1a1a1a',
+    letterSpacing: -0.5,
   },
   statTitle: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#666',
-    marginTop: 2,
+    marginTop: 3,
+    fontWeight: '600',
   },
   statSubtitle: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#999',
-    marginTop: 1,
+    marginTop: 2,
+    fontWeight: '500',
   },
   quickActionsContainer: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: 24,
+    paddingBottom: 24,
   },
   quickActionsGrid: {
     flexDirection: 'row',
@@ -433,123 +476,145 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   quickActionCard: {
-    width: (width - 50) / 2,
-    height: 100,
-    marginBottom: 10,
-    borderRadius: 12,
+    width: (width - 58) / 2,
+    height: 120,
+    marginBottom: 14,
+    borderRadius: 20,
     overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    elevation: 5,
+  },
+  quickActionTouch: {
+    flex: 1,
   },
   quickActionGradient: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 15,
+    padding: 18,
+  },
+  quickActionIconContainer: {
+    marginBottom: 8,
   },
   quickActionText: {
     color: 'white',
     fontSize: 14,
-    fontWeight: '600',
-    marginTop: 8,
+    fontWeight: '700',
     textAlign: 'center',
+    letterSpacing: -0.2,
   },
   recentActivityContainer: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: 24,
+    paddingBottom: 24,
   },
   activityCard: {
     backgroundColor: 'white',
-    borderRadius: 12,
-    padding: 15,
+    borderRadius: 20,
+    padding: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 4,
   },
   activityItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: '#f5f5f5',
   },
   activityText: {
     flex: 1,
     fontSize: 14,
     color: '#333',
-    marginLeft: 12,
+    marginLeft: 14,
+    fontWeight: '600',
   },
   activityTime: {
     fontSize: 12,
-    color: '#666',
+    color: '#999',
+    fontWeight: '500',
   },
   professionalContainer: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: 24,
+    paddingBottom: 24,
   },
   professionalCard: {
     backgroundColor: 'white',
-    borderRadius: 12,
-    padding: 15,
+    borderRadius: 20,
+    padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 4,
   },
   professionalIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 56,
+    height: 56,
+    borderRadius: 16,
     backgroundColor: '#f0f8f0',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 15,
+    marginRight: 16,
   },
   professionalContent: {
     flex: 1,
   },
   professionalName: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: '800',
+    color: '#1a1a1a',
+    letterSpacing: -0.3,
   },
   professionalCredentials: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#666',
-    marginTop: 2,
+    marginTop: 4,
+    fontWeight: '500',
   },
   professionalLocation: {
     fontSize: 12,
     color: '#666',
-    marginTop: 2,
+    marginTop: 3,
+    fontWeight: '500',
   },
   contactButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 48,
+    height: 48,
+    borderRadius: 14,
     backgroundColor: '#f0f8f0',
     alignItems: 'center',
     justifyContent: 'center',
   },
   healthTipContainer: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: 24,
+    paddingBottom: 32,
   },
   healthTipCard: {
-    borderRadius: 12,
-    padding: 20,
+    borderRadius: 20,
+    padding: 24,
     flexDirection: 'row',
     alignItems: 'center',
+    shadowColor: '#4CAF50',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
+    elevation: 5,
   },
   healthTipText: {
     flex: 1,
     fontSize: 14,
     color: 'white',
-    marginLeft: 15,
-    lineHeight: 20,
+    marginLeft: 16,
+    lineHeight: 22,
+    fontWeight: '600',
   },
 });
 
