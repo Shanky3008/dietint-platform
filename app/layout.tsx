@@ -1,25 +1,5 @@
-import { Inter } from 'next/font/google';
 import ThemeRegistry from '@/components/ThemeRegistry';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
-
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThemeRegistry>
-          {children}
-        </ThemeRegistry>
-      </body>
-    </html>
-  );
-}
 
 export const metadata = {
   title: 'CoachPulse - Platform for Health & Wellness Coaches',
@@ -47,3 +27,19 @@ export const metadata = {
     apple: ['/icons/icon-192x192.svg', '/icons/icon-152x152.svg', '/icons/icon-192x192.svg']
   }
 } as const;
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeRegistry>
+          {children}
+        </ThemeRegistry>
+      </body>
+    </html>
+  );
+}

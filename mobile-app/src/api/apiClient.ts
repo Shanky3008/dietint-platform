@@ -3,9 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // API Configuration
 const API_CONFIG = {
-  baseURL: __DEV__ 
+  baseURL: __DEV__
     ? 'http://localhost:3002' // Development URL
-    : 'https://dietint-platform.vercel.app', // Production URL
+    : 'https://coachpulse.in', // Production URL
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ export const api = axios.create(API_CONFIG);
 api.interceptors.request.use(
   async (config) => {
     try {
-      const tokenData = await AsyncStorage.getItem('@dietint_token');
+      const tokenData = await AsyncStorage.getItem('@coachpulse_token');
       if (tokenData) {
         const token = JSON.parse(tokenData);
         if (token.accessToken) {
@@ -55,7 +55,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       
       try {
-        const tokenData = await AsyncStorage.getItem('@dietint_token');
+        const tokenData = await AsyncStorage.getItem('@coachpulse_token');
         if (tokenData) {
           const token = JSON.parse(tokenData);
           
@@ -67,7 +67,7 @@ api.interceptors.response.use(
           const newToken = refreshResponse.data.token;
           
           // Update stored token
-          await AsyncStorage.setItem('@dietint_token', JSON.stringify(newToken));
+          await AsyncStorage.setItem('@coachpulse_token', JSON.stringify(newToken));
           
           // Update authorization header
           originalRequest.headers.Authorization = `Bearer ${newToken.accessToken}`;
@@ -78,9 +78,9 @@ api.interceptors.response.use(
       } catch (refreshError) {
         // Refresh failed, clear session
         await AsyncStorage.multiRemove([
-          '@dietint_user',
-          '@dietint_token',
-          '@dietint_nutritionist_profile'
+          '@coachpulse_user',
+          '@coachpulse_token',
+          '@coachpulse_coach_profile'
         ]);
         
         // You might want to navigate to login screen here

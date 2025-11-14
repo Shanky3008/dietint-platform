@@ -40,16 +40,18 @@ export const BRAND_CONFIG = {
     title: 'CoachPulse - Platform for Health & Wellness Coaches',
     description: 'Manage your coaching clients with smart alerts and automated nudges. ₹200 per client per month. Never lose a client to neglect again.',
     keywords: [
-      'diet intelligence',
-      'nutrition interaction',
-      'smart nutrition',
-      'intelligent diet planning',
-      'interactive dietitian',
-      'AI nutrition guidance',
-      'personalized diet plans',
-      'nutrition consultation',
-      'dietitian platform',
-      'smart meal planning'
+      'health coach platform',
+      'wellness coach software',
+      'nutrition coach management',
+      'client engagement platform',
+      'coaching business automation',
+      'client retention software',
+      'health coaching tools',
+      'nutrition coaching platform',
+      'coach dashboard',
+      'white-label coaching app',
+      'automated client nudges',
+      'coaching client management'
     ],
     ogImage: '/images/coachpulse-og.jpg',
     twitterCard: 'summary_large_image'
